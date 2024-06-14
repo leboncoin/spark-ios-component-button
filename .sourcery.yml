@@ -3,51 +3,51 @@ configurations:
       include:
         - Sources/
       exclude:
-        - Sources/Spark___COMPONENT_NAME___Testing/
-        - Sources/Spark___COMPONENT_NAME___SnapshotTesting/
+        - Sources/SparkButtonTesting/
+        - Sources/SparkButtonSnapshotTesting/
     templates:
       - .sourcery/template/SparkAutoMockable.stencil
-    output: Sources/Spark___COMPONENT_NAME___Testing/Generated/AutoMockable.generated.swift
+    output: Sources/SparkButtonTesting/Generated/AutoMockable.generated.swift
     args:
-      autoMockableImports: [Combine, SparkTheming, SparkTheme]
+      autoMockableImports: [Combine, SparkTheming]
       autoMockableSPIImports: [SparkCommon, SparkCommonTesting, SparkThemingTesting]
-      autoMockableTestableImports: [Spark___COMPONENT_NAME___]
+      autoMockableTestableImports: [SparkButton]
   - sources:
       include:
         - Sources/
       exclude:
-        - Sources/Spark___COMPONENT_NAME___Testing/
-        - Sources/Spark___COMPONENT_NAME___SnapshotTesting/
+        - Sources/SparkButtonTesting/
+        - Sources/SparkButtonSnapshotTesting/
     templates:
       - .sourcery/template/SparkAutoMockTest.stencil
-    output: Sources/Spark___COMPONENT_NAME___Testing/Generated/AutoMockTest.generated.swift
+    output: Sources/SparkButtonTesting/Generated/AutoMockTest.generated.swift
     args:
       autoMockableImports: [Combine, SparkTheming]
-      autoMockableSPIImports: [SparkCommon, SparkCommonTestin, SparkThemingTestingg]
-      autoMockableTestableImports: [Spark___COMPONENT_NAME___]
+      autoMockableSPIImports: [SparkCommon, SparkCommonTesting, SparkThemingTesting]
+      autoMockableTestableImports: [SparkButton]
   - sources:
       include:
         - Sources/
       exclude:
-        - Sources/Spark___COMPONENT_NAME___Testing/
-        - Sources/Spark___COMPONENT_NAME___SnapshotTesting/
+        - Sources/SparkButtonTesting/
+        - Sources/SparkButtonSnapshotTesting/
     templates:
       - .sourcery/template/SparkAutoPublisherTest.stencil
-    output: Sources/Spark___COMPONENT_NAME___Testing/Generated/AutoPublisherTest.generated.swift
+    output: Sources/SparkButtonTesting/Generated/AutoPublisherTest.generated.swift
     args:
       autoMockableImports: [Combine, SparkTheming]
       autoMockableSPIImports: [SparkCommon, SparkCommonTesting, SparkThemingTesting]
-      autoMockableTestableImports: [Spark___COMPONENT_NAME___]
+      autoMockableTestableImports: [SparkButton]
   - sources:
       include:
         - Sources/
       exclude:
-        - Sources/Spark___COMPONENT_NAME___Testing/
-        - Sources/Spark___COMPONENT_NAME___SnapshotTesting/
+        - Sources/SparkButtonTesting/
+        - Sources/SparkButtonSnapshotTesting/
     templates:
       - .sourcery/template/SparkAutoViewModelStub.stencil
-    output: Sources/Spark___COMPONENT_NAME___Testing/Generated/AutoViewModelStub.generated.swift
+    output: Sources/SparkButtonTesting/Generated/AutoViewModelStub.generated.swift
     args:
       autoMockableImports: [Combine, SparkTheming]
       autoMockableSPIImports: [SparkCommon, SparkCommonTesting, SparkThemingTesting]
-      autoMockableTestableImports: [Spark___COMPONENT_NAME___]
+      autoMockableTestableImports: [SparkButton]
