@@ -7,7 +7,7 @@
 //
 
 @testable import SparkButton
-import SparkThemingTesting
+@_spi(SI_SPI) import SparkThemingTesting
 import SparkTheming
 
 extension ButtonCurrentColors {

@@ -10,7 +10,7 @@ import XCTest
 import SwiftUI
 @testable import SparkButton
 @_spi(SI_SPI) @testable import SparkButtonTesting
-import SparkThemingTesting
+@_spi(SI_SPI) import SparkThemingTesting
 import SparkTheming
 
 final class ButtonGetColorsUseCaseTests: XCTestCase {
