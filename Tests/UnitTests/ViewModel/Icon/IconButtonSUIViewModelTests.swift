@@ -9,7 +9,7 @@
 import XCTest
 @testable import SparkButton
 @_spi(SI_SPI) import SparkCommon
-import SparkThemingTesting
+@_spi(SI_SPI) import SparkThemingTesting
 
 final class IconButtonSUIViewModelTests: XCTestCase {
 

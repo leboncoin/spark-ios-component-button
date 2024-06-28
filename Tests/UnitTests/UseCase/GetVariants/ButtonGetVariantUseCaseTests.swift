@@ -9,8 +9,8 @@
 import XCTest
 import SwiftUI
 @testable import SparkButton
-import SparkThemingTesting
-import SparkThemingTesting
+@_spi(SI_SPI) import SparkThemingTesting
+@_spi(SI_SPI) import SparkThemingTesting
 import SparkTheming
 
 /// Base class for variant tests.
