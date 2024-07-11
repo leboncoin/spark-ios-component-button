@@ -81,7 +81,6 @@ public final class ButtonUIView: ButtonMainUIView {
         set {
             super.isEnabled = newValue
             self.titleStateLabel.updateContent(from: self)
-            self.updateAccessibilityLabel()
         }
     }
 
@@ -93,7 +92,6 @@ public final class ButtonUIView: ButtonMainUIView {
         set {
             super.isSelected = newValue
             self.titleStateLabel.updateContent(from: self)
-            self.updateAccessibilityLabel()
         }
     }
 
@@ -110,10 +108,10 @@ public final class ButtonUIView: ButtonMainUIView {
 
     public override var accessibilityLabel: String? {
         get {
-            return self.accessibilityLabelManager.value
+            return self.titleLabel.accessibilityLabel
         }
         set {
-            self.accessibilityLabelManager.value = newValue
+            self.titleLabel.accessibilityLabel = newValue
         }
     }
 
@@ -127,8 +125,6 @@ public final class ButtonUIView: ButtonMainUIView {
     @ScaledUIMetric private var horizontalPadding: CGFloat = 0
 
     private var firstContentStackViewAnimation: Bool = true
-
-    private var accessibilityLabelManager = AccessibilityLabelManager()
 
     private var subscriptions = Set<AnyCancellable>()
 
@@ -261,7 +257,6 @@ public final class ButtonUIView: ButtonMainUIView {
     /// - parameter state: state of the title
     public func setTitle(_ title: String?, for state: ControlState) {
         self.titleStateLabel.setText(title, for: state, on: self)
-        self.updateAccessibilityLabel()
     }
 
     /// The title of the button for a state.
@@ -275,7 +270,6 @@ public final class ButtonUIView: ButtonMainUIView {
     /// - parameter state: state of the attributedTitle
     public func setAttributedTitle(_ attributedTitle: NSAttributedString?, for state: ControlState) {
         self.titleStateLabel.setAttributedText(attributedTitle, for: state, on: self)
-        self.updateAccessibilityLabel()
     }
 
     // MARK: - Update UI
@@ -325,10 +319,6 @@ public final class ButtonUIView: ButtonMainUIView {
         super.isImageOnStateViewDidUpdate(isImage)
 
         self.imageContentView.isHidden = !isImage
-    }
-
-    private func updateAccessibilityLabel() {
-        self.accessibilityLabelManager.internalValue = self.titleLabel.accessibilityLabel
     }
 
     // MARK: - Subscribe
