@@ -150,11 +150,11 @@ public class ButtonMainUIView: UIControl {
     private var heightConstraint: NSLayoutConstraint?
     private var imageViewHeightConstraint: NSLayoutConstraint?
 
-    @ScaledUIMetric var height: CGFloat = 0
-    @ScaledUIMetric var imageHeight: CGFloat = 0
+    @ScaledUIFrame var height: CGFloat = 0
+    @ScaledUIFrame var imageHeight: CGFloat = 0
 
-    @ScaledUIMetric private var cornerRadius: CGFloat = 0
-    @ScaledUIMetric private var borderWidth: CGFloat = 0
+    @ScaledUIBorderRadius private var cornerRadius: CGFloat = 0
+    @ScaledUIBorderWidth private var borderWidth: CGFloat = 0
 
     private var subscriptions = Set<AnyCancellable>()
 
@@ -179,6 +179,11 @@ public class ButtonMainUIView: UIControl {
         // Accessibility
         self.accessibilityTraits = [.button]
         self.isAccessibilityElement = true
+        self.scalesLargeContentImage = true
+        self.showsLargeContentViewer = true
+        self.addInteraction(UILargeContentViewerInteraction())
+        self.minimumContentSizeCategory = .large
+        self.maximumContentSizeCategory = .extraExtraExtraLarge
 
         // Needed values from viewModel (important for superview)
         self.height = self.viewModel.sizes?.height ?? 0
@@ -391,7 +396,15 @@ public class ButtonMainUIView: UIControl {
         // **
         // Is Image ?
         self.imageStateView.$isImage.subscribe(in: &self.subscriptions) { [weak self] isImage in
-            self?.isImageOnStateViewDidUpdate(isImage)
+            guard let self else { return }
+            self.isImageOnStateViewDidUpdate(isImage)
+        }
+
+        // **
+        // Image changed ?
+        self.imageStateView.$imageChanged.subscribe(in: &self.subscriptions) { [weak self] _ in
+            guard let self else { return }
+            self.largeContentImage = self.imageStateView.image
         }
     }
 

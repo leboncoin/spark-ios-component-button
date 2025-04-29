@@ -232,9 +232,9 @@ extension ImageEither {
 }
 
 private extension Image {
-    static var normalMock = Image(systemName: "arrow.right.square")
-    static let disabledMock = Image(systemName: "arrow.up.square")
-    static let selectedMock = Image(systemName: "arrow.down.square")
+    static var normalMock = Image(systemName: "arrow.right")
+    static let disabledMock = Image(systemName: "arrow.up")
+    static let selectedMock = Image(systemName: "arrow.down")
 }
 
 private extension UIImage {
