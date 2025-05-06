@@ -14,15 +14,15 @@ struct ButtonImageView<ViewModel: ButtonMainViewModel & ButtonMainSUIViewModel>:
 
     // MARK: - Properties
 
-    let image: Image?
-    @ScaledMetric private var size: CGFloat
-    let foregroundColor: (any ColorToken)?
+    private let image: Image?
+    private let size: CGFloat
+    private let foregroundColor: (any ColorToken)?
 
     // MARK: - Initialization
 
     init(viewModel: ViewModel) {
         self.image = viewModel.controlStateImage.image
-        self._size = .init(wrappedValue: viewModel.sizes?.imageSize ?? .zero)
+        self.size = viewModel.sizes?.imageSize ?? .zero
         self.foregroundColor = viewModel.currentColors?.imageTintColor
     }
 
@@ -32,7 +32,7 @@ struct ButtonImageView<ViewModel: ButtonMainViewModel & ButtonMainSUIViewModel>:
         if let image = self.image {
             image.resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(
+                .scaledFrame(
                     width: self.size,
                     height: self.size,
                     alignment: .center

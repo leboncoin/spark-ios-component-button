@@ -16,6 +16,7 @@ public struct IconButtonView: View {
     // MARK: - Private Properties
 
     @ObservedObject private var viewModel: IconButtonSUIViewModel
+    private var largeContentTitle: String?
 
     private var action: () -> Void
 
@@ -58,6 +59,13 @@ public struct IconButtonView: View {
         ) {
             ButtonImageView(viewModel: self.viewModel)
         }
+        .accessibilityShowsLargeContentViewer {
+            if let largeContentTitle {
+                Text(largeContentTitle)
+            }
+
+            self.viewModel.controlStateImage.image
+        }
     }
 
     // MARK: - Modifier
@@ -89,5 +97,15 @@ public struct IconButtonView: View {
         self.viewModel.setIsSelected(isSelected)
 
         return self
+    }
+
+    /// Set a text to add a context on **accessibilityShowsLargeContentViewer**.
+    /// - Parameters:
+    ///   - text: The text displayed on the accessibilityShowsLargeContentViewer.
+    /// - Returns: Current Button View.
+    public func accessibilityLargeContentText(_ text: String) -> Self {
+        var copy = self
+        copy.largeContentTitle = text
+        return copy
     }
 }

@@ -24,7 +24,6 @@ public final class ButtonUIView: ButtonMainUIView {
         let stackView = UIStackView(
             arrangedSubviews:
                 [
-
                     self.imageContentView,
                     self.titleLabel
                 ]
@@ -121,8 +120,8 @@ public final class ButtonUIView: ButtonMainUIView {
 
     private var contentStackViewLeadingConstraint: NSLayoutConstraint?
 
-    @ScaledUIMetric private var horizontalSpacing: CGFloat = 0
-    @ScaledUIMetric private var horizontalPadding: CGFloat = 0
+    @ScaledUIPadding private var horizontalSpacing: CGFloat = 0
+    @ScaledUIPadding private var horizontalPadding: CGFloat = 0
 
     private var firstContentStackViewAnimation: Bool = true
 
@@ -359,6 +358,13 @@ public final class ButtonUIView: ButtonMainUIView {
             self?.titleLabel.isHidden = !isText
         }
         // **
+
+        // **
+        // Text changed ?
+        self.titleStateLabel.$textChanged.subscribe(in: &self.subscriptions) { [weak self] _ in
+            guard let self else { return }
+            self.largeContentTitle = self.titleStateLabel.text
+        }
     }
 
     // MARK: - Trait Collection

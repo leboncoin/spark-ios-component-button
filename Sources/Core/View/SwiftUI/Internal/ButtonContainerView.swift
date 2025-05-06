@@ -17,9 +17,6 @@ struct ButtonContainerView<ContainerView: View, ViewModel: ButtonMainViewModel &
 
     @ObservedObject private var viewModel: ViewModel
 
-    @ScaledMetric private var height: CGFloat
-    @ScaledMetric private var borderWidth: CGFloat
-    @ScaledMetric private var borderRadius: CGFloat
     private let padding: EdgeInsets?
 
     @State private var isPressed: Bool = false
@@ -40,9 +37,6 @@ struct ButtonContainerView<ContainerView: View, ViewModel: ButtonMainViewModel &
     ) {
         self.viewModel = viewModel
 
-        self._height = .init(wrappedValue: viewModel.sizes?.height ?? .zero)
-        self._borderWidth = .init(wrappedValue: viewModel.border?.width ?? .zero)
-        self._borderRadius = .init(wrappedValue: viewModel.border?.radius ?? .zero)
         self.padding = padding
 
         self.action = action
@@ -55,13 +49,13 @@ struct ButtonContainerView<ContainerView: View, ViewModel: ButtonMainViewModel &
         Button(action: self.action) {
             self.contentView()
                 .padding(self.padding)
-                .frame(height: self.height)
-                .frame(minWidth: self.height)
+                .scaledFrame(height: self.viewModel.sizes?.height)
+                .scaledFrame(minWidth: self.viewModel.sizes?.height)
                 .background(self.viewModel.currentColors?.backgroundColor.color ?? .clear)
                 .contentShape(Rectangle())
-                .border(
-                    width: self.borderWidth,
-                    radius: self.borderRadius,
+                .scaledBorder(
+                    width: self.viewModel.border?.width,
+                    radius: self.viewModel.border?.radius,
                     colorToken: self.viewModel.currentColors?.borderColor ?? ColorTokenDefault.clear
                 )
         }
@@ -72,6 +66,8 @@ struct ButtonContainerView<ContainerView: View, ViewModel: ButtonMainViewModel &
         .disabled(self.viewModel.state?.isUserInteractionEnabled == false)
         .opacity(self.viewModel.state?.opacity ?? .zero)
         .accessibilityIdentifier(ButtonAccessibilityIdentifier.button)
+        .accessibilityShowsLargeContentViewer()
+        .dynamicTypeSize(DynamicTypeSize.large...DynamicTypeSize.xxxLarge)
         .accessibilityAddTraits(.isButton)
         .onChange(of: self.isPressed) { isPressed in
             self.viewModel.setIsPressed(isPressed)
