@@ -1,6 +1,6 @@
 //
 //  ButtonViewSnapshotTests.swift
-//  SparkButtonSnapshotTests
+//  SparkComponentButtonSnapshotTests
 //
 //  Created by robin.lemaire on 30/11/2023.
 //  Copyright © 2023 Leboncoin. All rights reserved.

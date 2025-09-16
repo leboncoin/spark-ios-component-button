@@ -15,8 +15,8 @@ let package = Package(
             targets: ["SparkComponentButton"]
         ),
         .library(
-            name: "SparkButtonTesting",
-            targets: ["SparkButtonTesting"]
+            name: "SparkComponentButtonTesting",
+            targets: ["SparkComponentButtonTesting"]
         )
     ],
     dependencies: [
@@ -47,7 +47,7 @@ let package = Package(
             path: "Sources/Core"
         ),
         .target(
-            name: "SparkButtonTesting",
+            name: "SparkComponentButtonTesting",
             dependencies: [
                 "SparkComponentButton",
                 .product(
@@ -70,10 +70,10 @@ let package = Package(
             path: "Sources/Testing"
         ),
         .testTarget(
-            name: "SparkButtonUnitTests",
+            name: "SparkComponentButtonUnitTests",
             dependencies: [
                 "SparkComponentButton",
-                "SparkButtonTesting",
+                "SparkComponentButtonTesting",
                 .product(
                     name: "SparkCommonTesting",
                     package: "spark-ios-common"
@@ -86,10 +86,10 @@ let package = Package(
             path: "Tests/UnitTests"
         ),
         .testTarget(
-            name: "SparkButtonSnapshotTests",
+            name: "SparkComponentButtonSnapshotTests",
             dependencies: [
                 "SparkComponentButton",
-                "SparkButtonTesting",
+                "SparkComponentButtonTesting",
                 .product(
                     name: "SparkCommonSnapshotTesting",
                     package: "spark-ios-common"
