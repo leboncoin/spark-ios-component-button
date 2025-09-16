@@ -8,7 +8,7 @@
 
 import XCTest
 import SnapshotTesting
-@testable import SparkButton
+@testable import SparkComponentButton
 @_spi(SI_SPI) import SparkCommonSnapshotTesting
 @_spi(SI_SPI) import SparkCommon
 @_spi(SI_SPI) import SparkThemingTesting
@@ -19,7 +19,7 @@ final class ButtonUIViewSnapshotTests: UIKitComponentSnapshotTestCase {
 
     // MARK: - Properties
 
-    private let theme: Theme = SparkTheme.shared
+    private let theme: any Theme = SparkTheme.shared
 
     // MARK: - Tests
 

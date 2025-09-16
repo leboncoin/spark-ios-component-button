@@ -1,6 +1,6 @@
 //
 //  ButtonGetColorsUseCaseTests.swift
-//  SparkButton
+//  SparkComponentButton
 //
 //  Created by janniklas.freundt.ext on 24.05.23.
 //  Copyright © 2023 Leboncoin. All rights reserved.
@@ -8,7 +8,7 @@
 
 import XCTest
 import SwiftUI
-@testable import SparkButton
+@testable import SparkComponentButton
 @_spi(SI_SPI) @testable import SparkButtonTesting
 @_spi(SI_SPI) import SparkThemingTesting
 import SparkTheming

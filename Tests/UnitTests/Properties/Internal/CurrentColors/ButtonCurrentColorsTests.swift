@@ -8,7 +8,7 @@
 
 import XCTest
 
-@testable import SparkButton
+@testable import SparkComponentButton
 import SparkTheme
 
 final class ButtonCurrentColorsTests: XCTestCase {

@@ -1,6 +1,6 @@
 //
 //  ButtonView.swift
-//  SparkButton
+//  SparkComponentButton
 //
 //  Created by robin.lemaire on 20/11/2023.
 //  Copyright © 2023 Leboncoin. All rights reserved.
@@ -34,7 +34,7 @@ public struct ButtonView: View {
     ///   - alignment: The alignment of the button.
     ///   - action: The action of the button.
     public init(
-        theme: Theme,
+        theme: any Theme,
         intent: ButtonIntent,
         variant: ButtonVariant,
         size: ButtonSize,

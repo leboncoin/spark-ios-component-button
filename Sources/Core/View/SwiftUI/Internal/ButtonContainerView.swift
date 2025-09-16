@@ -1,6 +1,6 @@
 //
 //  ButtonContainerView.swift
-//  SparkButton
+//  SparkComponentButton
 //
 //  Created by robin.lemaire on 24/11/2023.
 //  Copyright © 2023 Leboncoin. All rights reserved.

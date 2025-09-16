@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import SparkButton
+@testable import SparkComponentButton
 @_spi(SI_SPI) import SparkCommon
 @_spi(SI_SPI) import SparkThemingTesting
 

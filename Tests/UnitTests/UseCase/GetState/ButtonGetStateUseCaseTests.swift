@@ -8,7 +8,7 @@
 
 import XCTest
 import SwiftUI
-@testable import SparkButton
+@testable import SparkComponentButton
 @_spi(SI_SPI) import SparkThemingTesting
 
 final class ButtonGetStateUseCaseTests: XCTestCase {

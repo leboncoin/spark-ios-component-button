@@ -6,7 +6,7 @@
 //  Copyright © 2023 Leboncoin. All rights reserved.
 //
 
-@testable import SparkButton
+@testable import SparkComponentButton
 @_spi(SI_SPI) import SparkCommon
 @_spi(SI_SPI) import SparkCommonTesting
 @_spi(SI_SPI) import SparkCommonSnapshotTesting

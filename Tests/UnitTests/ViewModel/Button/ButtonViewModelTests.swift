@@ -8,7 +8,7 @@
 
 import Foundation
 import XCTest
-@testable import SparkButton
+@testable import SparkComponentButton
 @_spi(SI_SPI) @testable import SparkButtonTesting
 @_spi(SI_SPI) import SparkCommon
 @_spi(SI_SPI) import SparkCommonTesting

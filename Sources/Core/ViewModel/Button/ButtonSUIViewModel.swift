@@ -1,6 +1,6 @@
 //
 //  ButtonSUIViewModel.swift
-//  SparkButton
+//  SparkComponentButton
 //
 //  Created by robin.lemaire on 15/01/2024.
 //  Copyright © 2024 Leboncoin. All rights reserved.
@@ -26,7 +26,7 @@ final class ButtonSUIViewModel: ButtonViewModel, ButtonMainSUIViewModel {
     // MARK: - Initialization
 
     init(
-        theme: Theme,
+        theme: any Theme,
         intent: ButtonIntent,
         variant: ButtonVariant,
         size: ButtonSize,

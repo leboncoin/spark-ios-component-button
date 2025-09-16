@@ -1,6 +1,6 @@
 //
 //  ButtonGetBorderUseCase.swift
-//  SparkButton
+//  SparkComponentButton
 //
 //  Created by robin.lemaire on 23/06/2023.
 //  Copyright © 2023 Leboncoin. All rights reserved.
@@ -13,7 +13,7 @@ import SparkTheming
 protocol ButtonGetBorderUseCaseable {
     // sourcery: border = "Identical"
     func execute(shape: ButtonShape,
-                 border: Border,
+                 border: any Border,
                  variant: ButtonVariant) -> ButtonBorder
 }
 
@@ -23,7 +23,7 @@ struct ButtonGetBorderUseCase: ButtonGetBorderUseCaseable {
 
     func execute(
         shape: ButtonShape,
-        border: Border,
+        border: any Border,
         variant: ButtonVariant
     ) -> ButtonBorder {
         let radius: CGFloat

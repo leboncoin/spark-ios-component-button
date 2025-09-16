@@ -1,13 +1,13 @@
 //
 //  ButtonMainSUIViewModelTests.swift
-//  SparkButton
+//  SparkComponentButton
 //
 //  Created by robin.lemaire on 15/01/2024.
 //  Copyright © 2024 Leboncoin. All rights reserved.
 //
 
 import XCTest
-@testable import SparkButton
+@testable import SparkComponentButton
 @_spi(SI_SPI) import SparkCommon
 @_spi(SI_SPI) import SparkThemingTesting
 import SwiftUI

@@ -17,7 +17,7 @@ class ButtonMainViewModel: ObservableObject {
 
     // MARK: - Properties
 
-    var theme: Theme {
+    var theme: any Theme {
         didSet {
             self.updateAll()
         }
@@ -79,27 +79,27 @@ class ButtonMainViewModel: ObservableObject {
 
     // MARK: - UseCases
 
-    let getBorderUseCase: ButtonGetBorderUseCaseable
-    let getColorsUseCase: ButtonGetColorsUseCaseable
-    let getCurrentColorsUseCase: ButtonGetCurrentColorsUseCaseable
-    let getSizesUseCase: ButtonGetSizesUseCaseable
-    let getStateUseCase: ButtonGetStateUseCaseable
+    let getBorderUseCase: any ButtonGetBorderUseCaseable
+    let getColorsUseCase: any ButtonGetColorsUseCaseable
+    let getCurrentColorsUseCase: any ButtonGetCurrentColorsUseCaseable
+    let getSizesUseCase: any ButtonGetSizesUseCaseable
+    let getStateUseCase: any ButtonGetStateUseCaseable
 
     // MARK: - Initialization
 
     init(
         for frameworkType: FrameworkType,
         type: ButtonType,
-        theme: Theme,
+        theme: any Theme,
         intent: ButtonIntent,
         variant: ButtonVariant,
         size: ButtonSize,
         shape: ButtonShape,
-        getBorderUseCase: ButtonGetBorderUseCaseable = ButtonGetBorderUseCase(),
-        getColorsUseCase: ButtonGetColorsUseCaseable = ButtonGetColorsUseCase(),
-        getCurrentColorsUseCase: ButtonGetCurrentColorsUseCaseable = ButtonGetCurrentColorsUseCase(),
-        getSizesUseCase: ButtonGetSizesUseCaseable = ButtonGetSizesUseCase(),
-        getStateUseCase: ButtonGetStateUseCaseable = ButtonGetStateUseCase()
+        getBorderUseCase: any ButtonGetBorderUseCaseable = ButtonGetBorderUseCase(),
+        getColorsUseCase: any ButtonGetColorsUseCaseable = ButtonGetColorsUseCase(),
+        getCurrentColorsUseCase: any ButtonGetCurrentColorsUseCaseable = ButtonGetCurrentColorsUseCase(),
+        getSizesUseCase: any ButtonGetSizesUseCaseable = ButtonGetSizesUseCase(),
+        getStateUseCase: any ButtonGetStateUseCaseable = ButtonGetStateUseCase()
     ) {
         self.frameworkType = frameworkType
         self.type = type
