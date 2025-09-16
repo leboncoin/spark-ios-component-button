@@ -9,7 +9,7 @@
 import XCTest
 import SwiftUI
 @testable import SparkComponentButton
-@_spi(SI_SPI) @testable import SparkButtonTesting
+@_spi(SI_SPI) @testable import SparkComponentButtonTesting
 @_spi(SI_SPI) import SparkThemingTesting
 import SparkTheming
 

@@ -1,6 +1,6 @@
 //
 //  ButtonColorsTests.swift
-//  SparkButtonTests
+//  SparkComponentButtonTests
 //
 //  Created by michael.zimmermann on 21.07.23.
 //  Copyright © 2023 Leboncoin. All rights reserved.

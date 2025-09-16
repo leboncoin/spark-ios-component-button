@@ -1,6 +1,6 @@
 //
 //  ButtonGetVariantFilledUseCase.swift
-//  SparkButtonTests
+//  SparkComponentButtonTests
 //
 //  Created by janniklas.freundt.ext on 16.05.23.
 //  Copyright © 2023 Leboncoin. All rights reserved.

@@ -1,6 +1,6 @@
 //
 //  ButtonViewModelTests.swift
-//  SparkButtonUnitTests
+//  SparkComponentButtonUnitTests
 //
 //  Created by robin.lemaire on 13/11/2023.
 //  Copyright © 2023 Leboncoin. All rights reserved.
@@ -9,7 +9,7 @@
 import Foundation
 import XCTest
 @testable import SparkComponentButton
-@_spi(SI_SPI) @testable import SparkButtonTesting
+@_spi(SI_SPI) @testable import SparkComponentButtonTesting
 @_spi(SI_SPI) import SparkCommon
 @_spi(SI_SPI) import SparkCommonTesting
 @_spi(SI_SPI) import SparkThemingTesting
