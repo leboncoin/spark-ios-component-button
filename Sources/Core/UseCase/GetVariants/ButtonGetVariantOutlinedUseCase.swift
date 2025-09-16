@@ -1,6 +1,6 @@
 //
 //  ButtonGetVariantOutlinedUseCase.swift
-//  SparkButton
+//  SparkComponentButton
 //
 //  Created by janniklas.freundt.ext on 16.05.23.
 //  Copyright © 2023 Leboncoin. All rights reserved.
@@ -14,8 +14,8 @@ struct ButtonGetVariantOutlinedUseCase: ButtonGetVariantUseCaseable {
 
     func execute(
         intent: ButtonIntent,
-        colors: Colors,
-        dims: Dims
+        colors: any Colors,
+        dims: any Dims
     ) -> ButtonColors {
         let dim5 = dims.dim5
 

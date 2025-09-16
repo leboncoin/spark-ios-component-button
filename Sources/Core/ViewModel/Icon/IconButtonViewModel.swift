@@ -1,6 +1,6 @@
 //
 //  IconButtonViewModel.swift
-//  SparkButton
+//  SparkComponentButton
 //
 //  Created by robin.lemaire on 13/11/2023.
 //  Copyright © 2023 Leboncoin. All rights reserved.
@@ -15,7 +15,7 @@ class IconButtonViewModel: ButtonMainViewModel {
 
     init(
         for frameworkType: FrameworkType,
-        theme: Theme,
+        theme: any Theme,
         intent: ButtonIntent,
         variant: ButtonVariant,
         size: ButtonSize,

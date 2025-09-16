@@ -1,6 +1,6 @@
 //
 //  ButtonMainUIView.swift
-//  SparkButton
+//  SparkComponentButton
 //
 //  Created by robin.lemaire on 10/11/2023.
 //  Copyright © 2023 Leboncoin. All rights reserved.
@@ -61,7 +61,7 @@ public class ButtonMainUIView: UIControl {
     }
 
     /// The spark theme of the button.
-    public var theme: Theme {
+    public var theme: any Theme {
         get {
             return self.viewModel.theme
         }

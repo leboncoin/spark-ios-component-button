@@ -1,6 +1,6 @@
 //
 //  ButtonViewModel.swift
-//  SparkButton
+//  SparkComponentButton
 //
 //  Created by robin.lemaire on 13/11/2023.
 //  Copyright © 2023 Leboncoin. All rights reserved.
@@ -27,23 +27,23 @@ class ButtonViewModel: ButtonMainViewModel {
 
     @Published private(set) var spacings: ButtonSpacings?
     @Published private(set) var isImageTrailing: Bool = false
-    @Published private(set) var titleFontToken: TypographyFontToken?
+    @Published private(set) var titleFontToken: (any TypographyFontToken)?
 
     // MARK: - Private Properties
 
-    private let getSpacingsUseCase: ButtonGetSpacingsUseCaseable
+    private let getSpacingsUseCase: any ButtonGetSpacingsUseCaseable
 
     // MARK: - Initialization
 
     init(
         for frameworkType: FrameworkType,
-        theme: Theme,
+        theme: any Theme,
         intent: ButtonIntent,
         variant: ButtonVariant,
         size: ButtonSize,
         shape: ButtonShape,
         alignment: ButtonAlignment,
-        getSpacingsUseCase: ButtonGetSpacingsUseCaseable = ButtonGetSpacingsUseCase()
+        getSpacingsUseCase: any ButtonGetSpacingsUseCaseable = ButtonGetSpacingsUseCase()
     ) {
         self.alignment = alignment
         self.getSpacingsUseCase = getSpacingsUseCase

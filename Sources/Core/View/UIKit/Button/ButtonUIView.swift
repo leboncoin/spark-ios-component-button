@@ -1,6 +1,6 @@
 //
 //  ButtonUIView.swift
-//  SparkButton
+//  SparkComponentButton
 //
 //  Created by robin.lemaire on 10/11/2023.
 //  Copyright © 2023 Leboncoin. All rights reserved.
@@ -138,7 +138,7 @@ public final class ButtonUIView: ButtonMainUIView {
     ///   - shape: The shape of the button.
     ///   - alignment: The alignment of the button.
     public init(
-        theme: Theme,
+        theme: any Theme,
         intent: ButtonIntent,
         variant: ButtonVariant,
         size: ButtonSize,

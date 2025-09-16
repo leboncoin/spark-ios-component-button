@@ -1,6 +1,6 @@
 //
 //  ButtonGetStateUseCase.swift
-//  SparkButton
+//  SparkComponentButton
 //
 //  Created by robin.lemaire on 27/06/2023.
 //  Copyright © 2023 Leboncoin. All rights reserved.
@@ -12,7 +12,7 @@ import SparkTheming
 protocol ButtonGetStateUseCaseable {
     // sourcery: dims = "Identical"
     func execute(isEnabled: Bool,
-                 dims: Dims) -> ButtonState
+                 dims: any Dims) -> ButtonState
 }
 
 struct ButtonGetStateUseCase: ButtonGetStateUseCaseable {
@@ -21,7 +21,7 @@ struct ButtonGetStateUseCase: ButtonGetStateUseCaseable {
 
     func execute(
         isEnabled: Bool,
-        dims: Dims
+        dims: any Dims
     ) -> ButtonState {
         let opacity = isEnabled ? dims.none : dims.dim3
 

@@ -8,7 +8,7 @@
 
 import XCTest
 import SwiftUI
-@testable import SparkButton
+@testable import SparkComponentButton
 
 final class ButtonGetSizesUseCaseTests: XCTestCase {
 
