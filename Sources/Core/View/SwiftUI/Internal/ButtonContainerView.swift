@@ -49,8 +49,8 @@ struct ButtonContainerView<ContainerView: View, ViewModel: ButtonMainViewModel &
         Button(action: self.action) {
             self.contentView()
                 .padding(self.padding)
-                .scaledFrame(height: self.viewModel.sizes?.height)
-                .scaledFrame(minWidth: self.viewModel.sizes?.height)
+                .sparkFrame(height: self.viewModel.sizes?.height)
+                .sparkFrame(minWidth: self.viewModel.sizes?.height)
                 .background(self.viewModel.currentColors?.backgroundColor.color ?? .clear)
                 .contentShape(Rectangle())
                 .scaledBorder(

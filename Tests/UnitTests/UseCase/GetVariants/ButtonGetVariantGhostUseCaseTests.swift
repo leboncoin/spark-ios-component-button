@@ -29,7 +29,7 @@ final class ButtonGetVariantGhostUseCaseTests: ButtonVariantUseCaseTests {
              colors.pressedBackgroundColor,
              colors.borderColor,
              colors.pressedBorderColor].map(\.color),
-            [self.theme.colors.main.main,
+            [self.theme.colors.main.onMainContainer,
              ColorTokenDefault.clear,
              self.theme.colors.main.main.opacity(self.theme.dims.dim5),
              ColorTokenDefault.clear,
@@ -51,7 +51,7 @@ final class ButtonGetVariantGhostUseCaseTests: ButtonVariantUseCaseTests {
              colors.pressedBackgroundColor,
              colors.borderColor,
              colors.pressedBorderColor].map(\.color),
-            [self.theme.colors.support.support,
+            [self.theme.colors.support.onSupportContainer,
              ColorTokenDefault.clear,
              self.theme.colors.support.support.opacity(self.theme.dims.dim5),
              ColorTokenDefault.clear,
@@ -73,7 +73,7 @@ final class ButtonGetVariantGhostUseCaseTests: ButtonVariantUseCaseTests {
              colors.pressedBackgroundColor,
              colors.borderColor,
              colors.pressedBorderColor].map(\.color),
-            [self.theme.colors.feedback.neutral,
+            [self.theme.colors.feedback.onNeutralContainer,
              ColorTokenDefault.clear,
              self.theme.colors.feedback.neutral.opacity(self.theme.dims.dim5),
              ColorTokenDefault.clear,
@@ -95,7 +95,7 @@ final class ButtonGetVariantGhostUseCaseTests: ButtonVariantUseCaseTests {
              colors.pressedBackgroundColor,
              colors.borderColor,
              colors.pressedBorderColor].map(\.color),
-            [self.theme.colors.feedback.alert,
+            [self.theme.colors.feedback.onAlertContainer,
              ColorTokenDefault.clear,
              self.theme.colors.feedback.alert.opacity(self.theme.dims.dim5),
              ColorTokenDefault.clear,
@@ -117,7 +117,7 @@ final class ButtonGetVariantGhostUseCaseTests: ButtonVariantUseCaseTests {
              colors.pressedBackgroundColor,
              colors.borderColor,
              colors.pressedBorderColor].map(\.color),
-            [self.theme.colors.feedback.success,
+            [self.theme.colors.feedback.onSuccessContainer,
              ColorTokenDefault.clear,
              self.theme.colors.feedback.success.opacity(self.theme.dims.dim5),
              ColorTokenDefault.clear,
@@ -139,7 +139,7 @@ final class ButtonGetVariantGhostUseCaseTests: ButtonVariantUseCaseTests {
              colors.pressedBackgroundColor,
              colors.borderColor,
              colors.pressedBorderColor].map(\.color),
-            [self.theme.colors.feedback.error,
+            [self.theme.colors.feedback.onErrorContainer,
              ColorTokenDefault.clear,
              self.theme.colors.feedback.error.opacity(self.theme.dims.dim5),
              ColorTokenDefault.clear,
@@ -169,6 +169,28 @@ final class ButtonGetVariantGhostUseCaseTests: ButtonVariantUseCaseTests {
             ].map(\.color))
     }
 
+    func test_surfaceInverse_colors() throws {
+        // Given
+        let sut = self.sut()
+
+        // When
+        let colors = sut.execute(intent: .surfaceInverse, colors: self.theme.colors, dims: self.theme.dims)
+
+        // Then
+        XCTAssertEqual(
+            [colors.foregroundColor,
+             colors.backgroundColor,
+             colors.pressedBackgroundColor,
+             colors.borderColor,
+             colors.pressedBorderColor].map(\.color),
+            [self.theme.colors.base.surfaceInverse,
+             ColorTokenDefault.clear,
+             self.theme.colors.base.surfaceInverse.opacity(self.theme.dims.dim5),
+             ColorTokenDefault.clear,
+             ColorTokenDefault.clear
+            ].map(\.color))
+    }
+
     func test_info_colors() throws {
         // Given
         let sut = self.sut()
@@ -183,7 +205,7 @@ final class ButtonGetVariantGhostUseCaseTests: ButtonVariantUseCaseTests {
              colors.pressedBackgroundColor,
              colors.borderColor,
              colors.pressedBorderColor].map(\.color),
-            [self.theme.colors.feedback.info,
+            [self.theme.colors.feedback.onInfoContainer,
              ColorTokenDefault.clear,
              self.theme.colors.feedback.info.opacity(self.theme.dims.dim5),
              ColorTokenDefault.clear,

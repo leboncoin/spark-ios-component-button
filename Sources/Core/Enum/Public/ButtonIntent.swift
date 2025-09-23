@@ -21,4 +21,5 @@ public enum ButtonIntent: CaseIterable {
     case success
     case support
     case surface
+    case surfaceInverse
 }

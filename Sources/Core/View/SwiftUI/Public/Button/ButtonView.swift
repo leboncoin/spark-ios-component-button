@@ -67,7 +67,7 @@ public struct ButtonView: View {
         ButtonContainerView(
             viewModel: self.viewModel,
             padding: .init(
-                horizontal: self.horizontalSpacing
+                horizontal: self.viewModel.controlStateText?.isText == true ? self.horizontalSpacing : .zero
             ),
             action: self.action
         ) {
@@ -116,6 +116,8 @@ public struct ButtonView: View {
             Text(attributedText)
                 .accessibilityIdentifier(ButtonAccessibilityIdentifier.text)
                 .animation(nil, value: attributedText)
+        } else {
+            EmptyView()
         }
     }
 

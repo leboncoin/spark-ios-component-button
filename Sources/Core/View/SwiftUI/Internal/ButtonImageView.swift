@@ -32,7 +32,7 @@ struct ButtonImageView<ViewModel: ButtonMainViewModel & ButtonMainSUIViewModel>:
         if let image = self.image {
             image.resizable()
                 .aspectRatio(contentMode: .fit)
-                .scaledFrame(
+                .sparkFrame(
                     width: self.size,
                     height: self.size,
                     alignment: .center

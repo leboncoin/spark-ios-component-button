@@ -256,7 +256,7 @@ public class ButtonMainUIView: UIControl {
     // MARK: - Update UI
 
     private func updateBorderRadius() {
-        self.setCornerRadius(self.cornerRadius)
+        self.sparkCornerRadius(self.cornerRadius)
     }
 
     private func updateBorderWidth() {
@@ -305,11 +305,13 @@ public class ButtonMainUIView: UIControl {
     /// This method is internal because it can be overriden by the view that inherits from this class.
     internal func colorsDidUpdate(_ colors: ButtonCurrentColors) {
         // Background Color
-        let isAnimated = self.isAnimated && self.backgroundColor != colors.backgroundColor.uiColor
+        let backgroundColor: UIColor = colors.backgroundColor.uiColor
+
+        let isAnimated = self.isAnimated && self.backgroundColor != backgroundColor
         let animationType: UIExecuteAnimationType = isAnimated ? .animated(duration: Animation.fastDuration) : .unanimated
 
         UIView.execute(animationType: animationType) { [weak self] in
-            self?.backgroundColor = colors.backgroundColor.uiColor
+            self?.backgroundColor = backgroundColor
         }
 
         // Border Color

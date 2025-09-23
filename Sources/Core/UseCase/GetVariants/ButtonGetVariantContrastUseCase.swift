@@ -24,65 +24,73 @@ struct ButtonVariantGetContrastUseCase: ButtonGetVariantUseCaseable {
         switch intent {
         case .accent:
             return .init(
-                foregroundColor: colors.accent.accent,
+                foregroundColor: colors.accent.onAccentContainer,
                 backgroundColor: backgroundColor,
                 pressedBackgroundColor: colors.states.accentContainerPressed,
                 borderColor: borderColor,
                 pressedBorderColor: pressedBorderColor
             )
-        case .basic:
-            return .init(
-                foregroundColor: colors.basic.basic,
-                backgroundColor: backgroundColor,
-                pressedBackgroundColor: colors.states.basicContainerPressed,
-                borderColor: borderColor,
-                pressedBorderColor: pressedBorderColor
-            )
-        case .main:
-            return .init(
-                foregroundColor: colors.main.main,
-                backgroundColor: backgroundColor,
-                pressedBackgroundColor: colors.states.mainContainerPressed,
-                borderColor: borderColor,
-                pressedBorderColor: pressedBorderColor
-            )
-        case .support:
-            return .init(
-                foregroundColor: colors.support.support,
-                backgroundColor: backgroundColor,
-                pressedBackgroundColor: colors.states.supportContainerPressed,
-                borderColor: borderColor,
-                pressedBorderColor: pressedBorderColor
-            )
-        case .neutral:
-            return .init(
-                foregroundColor: colors.feedback.neutral,
-                backgroundColor: backgroundColor,
-                pressedBackgroundColor: colors.states.neutralContainerPressed,
-                borderColor: borderColor,
-                pressedBorderColor: pressedBorderColor
-            )
         case .alert:
             return .init(
-                foregroundColor: colors.feedback.alert,
+                foregroundColor: colors.feedback.onAlertContainer,
                 backgroundColor: backgroundColor,
                 pressedBackgroundColor: colors.states.alertContainerPressed,
                 borderColor: borderColor,
                 pressedBorderColor: pressedBorderColor
             )
-        case .success:
+        case .basic:
             return .init(
-                foregroundColor: colors.feedback.success,
+                foregroundColor: colors.basic.onBasicContainer,
                 backgroundColor: backgroundColor,
-                pressedBackgroundColor: colors.states.successContainerPressed,
+                pressedBackgroundColor: colors.states.basicContainerPressed,
                 borderColor: borderColor,
                 pressedBorderColor: pressedBorderColor
             )
         case .danger:
             return .init(
-                foregroundColor: colors.feedback.error,
+                foregroundColor: colors.feedback.onErrorContainer,
                 backgroundColor: backgroundColor,
                 pressedBackgroundColor: colors.states.errorContainerPressed,
+                borderColor: borderColor,
+                pressedBorderColor: pressedBorderColor
+            )
+        case .info:
+            return .init(
+                foregroundColor: colors.feedback.onInfoContainer,
+                backgroundColor: backgroundColor,
+                pressedBackgroundColor: colors.states.infoContainerPressed,
+                borderColor: borderColor,
+                pressedBorderColor: pressedBorderColor
+            )
+        case .main:
+            return .init(
+                foregroundColor: colors.main.onMainContainer,
+                backgroundColor: backgroundColor,
+                pressedBackgroundColor: colors.states.mainContainerPressed,
+                borderColor: borderColor,
+                pressedBorderColor: pressedBorderColor
+            )
+        case .neutral:
+            return .init(
+                foregroundColor: colors.feedback.onNeutralContainer,
+                backgroundColor: backgroundColor,
+                pressedBackgroundColor: colors.states.neutralContainerPressed,
+                borderColor: borderColor,
+                pressedBorderColor: pressedBorderColor
+            )
+        case .success:
+            return .init(
+                foregroundColor: colors.feedback.onSuccessContainer,
+                backgroundColor: backgroundColor,
+                pressedBackgroundColor: colors.states.successContainerPressed,
+                borderColor: borderColor,
+                pressedBorderColor: pressedBorderColor
+            )
+        case .support:
+            return .init(
+                foregroundColor: colors.support.onSupportContainer,
+                backgroundColor: backgroundColor,
+                pressedBackgroundColor: colors.states.supportContainerPressed,
                 borderColor: borderColor,
                 pressedBorderColor: pressedBorderColor
             )
@@ -94,11 +102,11 @@ struct ButtonVariantGetContrastUseCase: ButtonGetVariantUseCaseable {
                 borderColor: borderColor,
                 pressedBorderColor: pressedBorderColor
             )
-        case .info:
+        case .surfaceInverse:
             return .init(
-                foregroundColor: colors.feedback.info,
-                backgroundColor: backgroundColor,
-                pressedBackgroundColor: colors.states.infoContainerPressed,
+                foregroundColor: colors.base.onSurfaceInverse,
+                backgroundColor: colors.base.surfaceInverse,
+                pressedBackgroundColor: colors.states.surfaceInversePressed,
                 borderColor: borderColor,
                 pressedBorderColor: pressedBorderColor
             )
