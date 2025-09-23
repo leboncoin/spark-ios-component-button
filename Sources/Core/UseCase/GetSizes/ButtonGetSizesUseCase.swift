@@ -10,8 +10,10 @@ import Foundation
 
 // sourcery: AutoMockable, AutoMockTest
 protocol ButtonGetSizesUseCaseable {
-    func execute(size: ButtonSize,
-                 type: ButtonType) -> ButtonSizes
+    func execute(
+        size: ButtonSize,
+        type: ButtonType
+    ) -> ButtonSizes
 }
 
 struct ButtonGetSizesUseCase: ButtonGetSizesUseCaseable {

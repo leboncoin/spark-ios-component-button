@@ -169,6 +169,28 @@ final class ButtonGetVariantFilledUseCaseTests: ButtonVariantUseCaseTests {
             ].map(\.color))
     }
 
+    func test_surfaceInverse_colors() throws {
+        // Given
+        let sut = self.sut()
+
+        // When
+        let colors = sut.execute(intent: .surfaceInverse, colors: self.theme.colors, dims: self.theme.dims)
+
+        // Then
+        XCTAssertEqual(
+            [colors.foregroundColor,
+             colors.backgroundColor,
+             colors.pressedBackgroundColor,
+             colors.borderColor,
+             colors.pressedBorderColor].map(\.color),
+            [self.theme.colors.base.onSurfaceInverse,
+             self.theme.colors.base.surfaceInverse,
+             self.theme.colors.states.surfaceInversePressed,
+             ColorTokenDefault.clear,
+             ColorTokenDefault.clear
+            ].map(\.color))
+    }
+
     func test_info_colors() throws {
         // Given
         let sut = self.sut()

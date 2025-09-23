@@ -25,65 +25,73 @@ struct ButtonGetVariantGhostUseCase: ButtonGetVariantUseCaseable {
         switch intent {
         case .accent:
             return .init(
-                foregroundColor: colors.accent.accent,
+                foregroundColor: colors.accent.onAccentContainer,
                 backgroundColor: ColorTokenDefault.clear,
                 pressedBackgroundColor: colors.accent.accent.opacity(dim5),
                 borderColor: borderColor,
                 pressedBorderColor: pressedBorderColor
             )
-        case .basic:
-            return .init(
-                foregroundColor: colors.basic.basic,
-                backgroundColor: ColorTokenDefault.clear,
-                pressedBackgroundColor: colors.basic.basic.opacity(dim5),
-                borderColor: borderColor,
-                pressedBorderColor: pressedBorderColor
-            )
-        case .main:
-            return .init(
-                foregroundColor: colors.main.main,
-                backgroundColor: ColorTokenDefault.clear,
-                pressedBackgroundColor: colors.main.main.opacity(dim5),
-                borderColor: borderColor,
-                pressedBorderColor: pressedBorderColor
-            )
-        case .support:
-            return .init(
-                foregroundColor: colors.support.support,
-                backgroundColor: ColorTokenDefault.clear,
-                pressedBackgroundColor: colors.support.support.opacity(dim5),
-                borderColor: borderColor,
-                pressedBorderColor: pressedBorderColor
-            )
-        case .neutral:
-            return .init(
-                foregroundColor: colors.feedback.neutral,
-                backgroundColor: ColorTokenDefault.clear,
-                pressedBackgroundColor: colors.feedback.neutral.opacity(dim5),
-                borderColor: borderColor,
-                pressedBorderColor: pressedBorderColor
-            )
         case .alert:
             return .init(
-                foregroundColor: colors.feedback.alert,
+                foregroundColor: colors.feedback.onAlertContainer,
                 backgroundColor: ColorTokenDefault.clear,
                 pressedBackgroundColor: colors.feedback.alert.opacity(dim5),
                 borderColor: borderColor,
                 pressedBorderColor: pressedBorderColor
             )
-        case .success:
+        case .basic:
             return .init(
-                foregroundColor: colors.feedback.success,
+                foregroundColor: colors.basic.onBasicContainer,
                 backgroundColor: ColorTokenDefault.clear,
-                pressedBackgroundColor: colors.feedback.success.opacity(dim5),
+                pressedBackgroundColor: colors.basic.basic.opacity(dim5),
                 borderColor: borderColor,
                 pressedBorderColor: pressedBorderColor
             )
         case .danger:
             return .init(
-                foregroundColor: colors.feedback.error,
+                foregroundColor: colors.feedback.onErrorContainer,
                 backgroundColor: ColorTokenDefault.clear,
                 pressedBackgroundColor: colors.feedback.error.opacity(dim5),
+                borderColor: borderColor,
+                pressedBorderColor: pressedBorderColor
+            )
+        case .info:
+            return .init(
+                foregroundColor: colors.feedback.onInfoContainer,
+                backgroundColor: ColorTokenDefault.clear,
+                pressedBackgroundColor: colors.feedback.info.opacity(dim5),
+                borderColor: borderColor,
+                pressedBorderColor: pressedBorderColor
+            )
+        case .main:
+            return .init(
+                foregroundColor: colors.main.onMainContainer,
+                backgroundColor: ColorTokenDefault.clear,
+                pressedBackgroundColor: colors.main.main.opacity(dim5),
+                borderColor: borderColor,
+                pressedBorderColor: pressedBorderColor
+            )
+        case .neutral:
+            return .init(
+                foregroundColor: colors.feedback.onNeutralContainer,
+                backgroundColor: ColorTokenDefault.clear,
+                pressedBackgroundColor: colors.feedback.neutral.opacity(dim5),
+                borderColor: borderColor,
+                pressedBorderColor: pressedBorderColor
+            )
+        case .success:
+            return .init(
+                foregroundColor: colors.feedback.onSuccessContainer,
+                backgroundColor: ColorTokenDefault.clear,
+                pressedBackgroundColor: colors.feedback.success.opacity(dim5),
+                borderColor: borderColor,
+                pressedBorderColor: pressedBorderColor
+            )
+        case .support:
+            return .init(
+                foregroundColor: colors.support.onSupportContainer,
+                backgroundColor: ColorTokenDefault.clear,
+                pressedBackgroundColor: colors.support.support.opacity(dim5),
                 borderColor: borderColor,
                 pressedBorderColor: pressedBorderColor
             )
@@ -95,11 +103,11 @@ struct ButtonGetVariantGhostUseCase: ButtonGetVariantUseCaseable {
                 borderColor: borderColor,
                 pressedBorderColor: pressedBorderColor
             )
-        case .info:
+        case .surfaceInverse:
             return .init(
-                foregroundColor: colors.feedback.info,
+                foregroundColor: colors.base.surfaceInverse,
                 backgroundColor: ColorTokenDefault.clear,
-                pressedBackgroundColor: colors.feedback.info.opacity(dim5),
+                pressedBackgroundColor: colors.base.surfaceInverse.opacity(dim5),
                 borderColor: borderColor,
                 pressedBorderColor: pressedBorderColor
             )

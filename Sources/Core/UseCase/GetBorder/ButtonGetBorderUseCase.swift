@@ -12,9 +12,11 @@ import SparkTheming
 // sourcery: AutoMockable, AutoMockTest
 protocol ButtonGetBorderUseCaseable {
     // sourcery: border = "Identical"
-    func execute(shape: ButtonShape,
-                 border: any Border,
-                 variant: ButtonVariant) -> ButtonBorder
+    func execute(
+        shape: ButtonShape,
+        border: any Border,
+        variant: ButtonVariant
+    ) -> ButtonBorder
 }
 
 struct ButtonGetBorderUseCase: ButtonGetBorderUseCaseable {

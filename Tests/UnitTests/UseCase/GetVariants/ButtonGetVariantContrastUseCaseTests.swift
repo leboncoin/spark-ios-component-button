@@ -29,7 +29,7 @@ final class ButtonVariantGetContrastUseCaseTests: ButtonVariantUseCaseTests {
              colors.pressedBackgroundColor,
              colors.borderColor,
              colors.pressedBorderColor].map(\.color),
-            [self.theme.colors.main.main,
+            [self.theme.colors.main.onMainContainer,
              self.theme.colors.base.surface,
              self.theme.colors.states.mainContainerPressed,
              ColorTokenDefault.clear,
@@ -51,7 +51,7 @@ final class ButtonVariantGetContrastUseCaseTests: ButtonVariantUseCaseTests {
              colors.pressedBackgroundColor,
              colors.borderColor,
              colors.pressedBorderColor].map(\.color),
-            [self.theme.colors.support.support,
+            [self.theme.colors.support.onSupportContainer,
              self.theme.colors.base.surface,
              self.theme.colors.states.supportContainerPressed,
              ColorTokenDefault.clear,
@@ -73,7 +73,7 @@ final class ButtonVariantGetContrastUseCaseTests: ButtonVariantUseCaseTests {
              colors.pressedBackgroundColor,
              colors.borderColor,
              colors.pressedBorderColor].map(\.color),
-            [self.theme.colors.feedback.neutral,
+            [self.theme.colors.feedback.onNeutralContainer,
              self.theme.colors.base.surface,
              self.theme.colors.states.neutralContainerPressed,
              ColorTokenDefault.clear,
@@ -95,7 +95,7 @@ final class ButtonVariantGetContrastUseCaseTests: ButtonVariantUseCaseTests {
              colors.pressedBackgroundColor,
              colors.borderColor,
              colors.pressedBorderColor].map(\.color),
-            [self.theme.colors.feedback.alert,
+            [self.theme.colors.feedback.onAlertContainer,
              self.theme.colors.base.surface,
              self.theme.colors.states.alertContainerPressed,
              ColorTokenDefault.clear,
@@ -117,7 +117,7 @@ final class ButtonVariantGetContrastUseCaseTests: ButtonVariantUseCaseTests {
              colors.pressedBackgroundColor,
              colors.borderColor,
              colors.pressedBorderColor].map(\.color),
-            [self.theme.colors.feedback.success,
+            [self.theme.colors.feedback.onSuccessContainer,
              self.theme.colors.base.surface,
              self.theme.colors.states.successContainerPressed,
              ColorTokenDefault.clear,
@@ -139,7 +139,7 @@ final class ButtonVariantGetContrastUseCaseTests: ButtonVariantUseCaseTests {
              colors.pressedBackgroundColor,
              colors.borderColor,
              colors.pressedBorderColor].map(\.color),
-            [self.theme.colors.feedback.error,
+            [self.theme.colors.feedback.onErrorContainer,
              self.theme.colors.base.surface,
              self.theme.colors.states.errorContainerPressed,
              ColorTokenDefault.clear,
@@ -169,6 +169,28 @@ final class ButtonVariantGetContrastUseCaseTests: ButtonVariantUseCaseTests {
             ].map(\.color))
     }
 
+    func test_surfaceInverse_colors() throws {
+        // Given
+        let sut = self.sut()
+
+        // When
+        let colors = sut.execute(intent: .surfaceInverse, colors: self.theme.colors, dims: self.theme.dims)
+
+        // Then
+        XCTAssertEqual(
+            [colors.foregroundColor,
+             colors.backgroundColor,
+             colors.pressedBackgroundColor,
+             colors.borderColor,
+             colors.pressedBorderColor].map(\.color),
+            [self.theme.colors.base.onSurfaceInverse,
+             self.theme.colors.base.surfaceInverse,
+             self.theme.colors.states.surfaceInversePressed,
+             ColorTokenDefault.clear,
+             ColorTokenDefault.clear
+            ].map(\.color))
+    }
+
     func test_info_colors() throws {
         // Given
         let sut = self.sut()
@@ -183,7 +205,7 @@ final class ButtonVariantGetContrastUseCaseTests: ButtonVariantUseCaseTests {
              colors.pressedBackgroundColor,
              colors.borderColor,
              colors.pressedBorderColor].map(\.color),
-            [self.theme.colors.feedback.info,
+            [self.theme.colors.feedback.onInfoContainer,
              self.theme.colors.base.surface,
              self.theme.colors.states.infoContainerPressed,
              ColorTokenDefault.clear,

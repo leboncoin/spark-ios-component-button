@@ -299,9 +299,16 @@ public final class ButtonUIView: ButtonMainUIView {
 
     // MARK: - Data Did Update
 
-    private func spacingsDidUpdate(_ spacings: ButtonSpacings) {
-        self.horizontalSpacing = spacings.horizontalSpacing
+    private func spacingsDidUpdate(_ spacings: ButtonSpacings? = nil) {
+        guard let spacings = spacings ?? self.viewModel.spacings else {
+            return
+        }
+
+        self.horizontalSpacing = self.titleLabel.isHidden ? .zero : spacings.horizontalSpacing
+        self._horizontalSpacing.update(traitCollection: self.traitCollection)
+
         self.horizontalPadding = spacings.horizontalPadding
+        self._horizontalPadding.update(traitCollection: self.traitCollection)
 
         self.updateSpacings()
     }
@@ -355,7 +362,9 @@ public final class ButtonUIView: ButtonMainUIView {
         // **
         // Is Text ?
         self.titleStateLabel.$isText.subscribe(in: &self.subscriptions) { [weak self] isText in
-            self?.titleLabel.isHidden = !isText
+            guard let self else { return }
+            self.titleLabel.isHidden = !isText
+            self.spacingsDidUpdate()
         }
         // **
 

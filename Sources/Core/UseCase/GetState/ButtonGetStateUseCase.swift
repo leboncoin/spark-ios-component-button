@@ -11,8 +11,10 @@ import SparkTheming
 // sourcery: AutoMockable, AutoMockTest
 protocol ButtonGetStateUseCaseable {
     // sourcery: dims = "Identical"
-    func execute(isEnabled: Bool,
-                 dims: any Dims) -> ButtonState
+    func execute(
+        isEnabled: Bool,
+        dims: any Dims
+    ) -> ButtonState
 }
 
 struct ButtonGetStateUseCase: ButtonGetStateUseCaseable {
