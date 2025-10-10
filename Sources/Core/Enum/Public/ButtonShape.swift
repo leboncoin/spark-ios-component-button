@@ -17,5 +17,10 @@ public enum ButtonShape: CaseIterable {
     case rounded
 
     /// Square button with no rounded corners.
+    @available(*, deprecated, message: "Use instead the .rounded case")
     case square
+
+    // MARK: - Properties
+
+    public static var allCases: [ButtonShape] = [.pill, rounded]
 }
