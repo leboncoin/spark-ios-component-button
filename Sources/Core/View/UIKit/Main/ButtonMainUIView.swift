@@ -206,7 +206,7 @@ public class ButtonMainUIView: UIControl {
     public override func layoutSubviews() {
         super.layoutSubviews()
 
-        self.updateBorderRadius()
+        self.updateBorder()
     }
 
     // MARK: - Constraints
@@ -255,12 +255,16 @@ public class ButtonMainUIView: UIControl {
 
     // MARK: - Update UI
 
-    private func updateBorderRadius() {
-        self.sparkCornerRadius(self.cornerRadius)
-    }
+    private func updateBorder(colors: ButtonCurrentColors? = nil) {
+        guard let colors = colors ?? self.viewModel.currentColors else {
+            return
+        }
 
-    private func updateBorderWidth() {
-        self.setBorderWidth(self.borderWidth)
+        self.sparkBorderRadius(
+            width: self.borderWidth,
+            radius: self.cornerRadius,
+            colorToken: colors.borderColor
+        )
     }
 
     private func updateHeight() {
@@ -315,19 +319,10 @@ public class ButtonMainUIView: UIControl {
         }
 
         // Border Color
-        self.borderColorDidUpdate(from: colors)
+        self.updateBorder(colors: colors)
 
         // Foreground Color
         self.imageView.tintColor = colors.imageTintColor.uiColor
-    }
-
-    private func borderColorDidUpdate(from colors: ButtonCurrentColors? = nil) {
-        guard let colors = colors ?? self.viewModel.currentColors else {
-            return
-        }
-
-        // Border Color
-        self.setBorderColor(from: colors.borderColor)
     }
 
     /// UI must be update when image change on imageStateView.
@@ -346,13 +341,9 @@ public class ButtonMainUIView: UIControl {
     }
 
     private func borderDidUpdate(_ border: ButtonBorder) {
-        // Radius
         self.cornerRadius = border.radius
-        self.updateBorderRadius()
-
-        // Width
         self.borderWidth = border.width
-        self.updateBorderWidth()
+        self.updateBorder()
     }
 
     // MARK: - Subscribe
@@ -415,11 +406,6 @@ public class ButtonMainUIView: UIControl {
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
 
-        // Reload colors ?
-        if self.traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
-            self.borderColorDidUpdate()
-        }
-
         // Update heights
         self._height.update(traitCollection: self.traitCollection)
         self.updateHeight()
@@ -428,8 +414,7 @@ public class ButtonMainUIView: UIControl {
 
         // Corner
         self._cornerRadius.update(traitCollection: self.traitCollection)
-        self.updateBorderRadius()
         self._borderWidth.update(traitCollection: self.traitCollection)
-        self.updateBorderWidth()
+        self.updateBorder()
     }
 }
