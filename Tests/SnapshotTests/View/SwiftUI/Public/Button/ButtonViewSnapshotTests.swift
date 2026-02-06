@@ -38,7 +38,6 @@ final class ButtonViewSnapshotTests: SwiftUIComponentSnapshotTestCase {
                     intent: configuration.intent,
                     variant: configuration.variant,
                     size: configuration.size,
-                    shape: configuration.shape,
                     alignment: configuration.alignment,
                     action: {}
                 )

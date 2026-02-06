@@ -129,7 +129,7 @@ final class ButtonMainViewModelTests: XCTestCase {
         // Use Cases
         ButtonGetBorderUseCaseableMockTest.XCTCallsCount(
             stub.getBorderUseCaseMock,
-            executeWithShapeAndBorderAndVariantNumberOfCalls: 0
+            executeWithBorderAndVariantNumberOfCalls: 0
         )
         ButtonGetColorsUseCaseableMockTest.XCTCallsCount(
             stub.getColorsUseCaseMock,
@@ -234,7 +234,7 @@ final class ButtonMainViewModelTests: XCTestCase {
         // Use Cases
         ButtonGetBorderUseCaseableMockTest.XCTCallsCount(
             stub.getBorderUseCaseMock,
-            executeWithShapeAndBorderAndVariantNumberOfCalls: 0
+            executeWithBorderAndVariantNumberOfCalls: 0
         )
         ButtonGetColorsUseCaseableMockTest.XCTAssert(
             stub.getColorsUseCaseMock,
@@ -282,12 +282,10 @@ final class ButtonMainViewModelTests: XCTestCase {
         let newValue: ButtonVariant = givenIsDifferentNewValue ? .outlined : defaultValue
 
         let intentMock: ButtonIntent = .success
-        let shapeMock: ButtonShape = .square
 
         let stub = Stub(
             intent: intentMock,
-            variant: defaultValue,
-            shape: shapeMock
+            variant: defaultValue
         )
         let viewModel = stub.viewModel
 
@@ -335,7 +333,6 @@ final class ButtonMainViewModelTests: XCTestCase {
         ButtonGetBorderUseCaseableMockTest.XCTAssert(
             stub.getBorderUseCaseMock,
             expectedNumberOfCalls: givenIsDifferentNewValue ? 1 : 0,
-            givenShape: shapeMock,
             givenBorder: stub.themeMock.border as? BorderGeneratedMock,
             givenVariant: newValue,
             expectedReturnValue: stub.borderMock
@@ -435,7 +432,7 @@ final class ButtonMainViewModelTests: XCTestCase {
         // Use Cases
         ButtonGetBorderUseCaseableMockTest.XCTCallsCount(
             stub.getBorderUseCaseMock,
-            executeWithShapeAndBorderAndVariantNumberOfCalls: 0
+            executeWithBorderAndVariantNumberOfCalls: 0
         )
         ButtonGetColorsUseCaseableMockTest.XCTCallsCount(
             stub.getColorsUseCaseMock,
@@ -451,100 +448,6 @@ final class ButtonMainViewModelTests: XCTestCase {
             givenSize: newValue,
             givenType: typeMock,
             expectedReturnValue: stub.sizesMock
-        )
-        ButtonGetStateUseCaseableMockTest.XCTCallsCount(
-            stub.getStateUseCaseMock,
-            executeWithIsEnabledAndDimsNumberOfCalls: 0
-        )
-        // **
-    }
-
-    func test_set_shape_with_different_new_value() {
-        self.testSetShape(
-            givenIsDifferentNewValue: true
-        )
-    }
-
-    func test_set_shape_with_same_new_value() {
-        self.testSetShape(
-            givenIsDifferentNewValue: false
-        )
-    }
-
-    private func testSetShape(
-        givenIsDifferentNewValue: Bool
-    ) {
-        // GIVEN
-        let defaultValue: ButtonShape = .pill
-        let newValue: ButtonShape = givenIsDifferentNewValue ? .rounded : defaultValue
-
-        let variantMock: ButtonVariant = .tinted
-
-        let stub = Stub(
-            variant: variantMock,
-            shape: defaultValue
-        )
-        let viewModel = stub.viewModel
-
-        stub.subscribePublishers(on: &self.subscriptions)
-
-        viewModel.load() // Needed to get colors from usecase one time
-
-        // Reset all dependencies mocked data
-        stub.resetMockedData()
-
-        // WHEN
-        viewModel.shape = newValue
-
-        // THEN
-        XCTAssertEqual(
-            viewModel.shape,
-            newValue,
-            "Wrong shape value"
-        )
-
-        // **
-        // Published properties
-        ButtonMainViewModelPublisherTest.XCTSinksCount(
-            state: stub.statePublisherMock,
-            expectedNumberOfSinks: 0
-        )
-        ButtonMainViewModelPublisherTest.XCTSinksCount(
-            currentColors: stub.currentColorsPublisherMock,
-            expectedNumberOfSinks: 0
-        )
-        ButtonMainViewModelPublisherTest.XCTSinksCount(
-            sizes: stub.sizesPublisherMock,
-            expectedNumberOfSinks: 0
-        )
-        ButtonMainViewModelPublisherTest.XCTAssert(
-            border: stub.borderPublisherMock,
-            expectedNumberOfSinks: givenIsDifferentNewValue ? 1 : 0,
-            expectedValue: stub.borderMock
-        )
-        // **
-
-        // **
-        // Use Cases
-        ButtonGetBorderUseCaseableMockTest.XCTAssert(
-            stub.getBorderUseCaseMock,
-            expectedNumberOfCalls: givenIsDifferentNewValue ? 1 : 0,
-            givenShape: newValue,
-            givenBorder: stub.themeMock.border as? BorderGeneratedMock,
-            givenVariant: variantMock,
-            expectedReturnValue: stub.borderMock
-        )
-        ButtonGetColorsUseCaseableMockTest.XCTCallsCount(
-            stub.getColorsUseCaseMock,
-            executeWithThemeAndIntentAndVariantNumberOfCalls: 0
-        )
-        ButtonGetCurrentColorsUseCaseableMockTest.XCTCallsCount(
-            stub.getCurrentColorsUseCaseMock,
-            executeWithColorsAndIsPressedNumberOfCalls: 0
-        )
-        ButtonGetSizesUseCaseableMockTest.XCTCallsCount(
-            stub.getSizesUseCaseMock,
-            executeWithSizeAndTypeNumberOfCalls: 0
         )
         ButtonGetStateUseCaseableMockTest.XCTCallsCount(
             stub.getStateUseCaseMock,
@@ -617,7 +520,7 @@ final class ButtonMainViewModelTests: XCTestCase {
         // Use Cases
         ButtonGetBorderUseCaseableMockTest.XCTCallsCount(
             stub.getBorderUseCaseMock,
-            executeWithShapeAndBorderAndVariantNumberOfCalls: 0
+            executeWithBorderAndVariantNumberOfCalls: 0
         )
         ButtonGetColorsUseCaseableMockTest.XCTCallsCount(
             stub.getColorsUseCaseMock,
@@ -649,15 +552,13 @@ final class ButtonMainViewModelTests: XCTestCase {
         let intentMock: ButtonIntent = .success
         let variantMock: ButtonVariant = .outlined
         let sizeMock: ButtonSize = .large
-        let shapeMock: ButtonShape = .square
 
         let stub = Stub(
             for: testAllDataType.frameworkType,
             type: typeMock,
             intent: intentMock,
             variant: variantMock,
-            size: sizeMock,
-            shape: shapeMock
+            size: sizeMock
         )
         let viewModel = stub.viewModel
 
@@ -709,11 +610,6 @@ final class ButtonMainViewModelTests: XCTestCase {
             "Wrong size value"
         )
         XCTAssertEqual(
-            viewModel.shape,
-            shapeMock,
-            "Wrong shape value"
-        )
-        XCTAssertEqual(
             viewModel.isEnabled,
             true,
             "Wrong default isEnabled value"
@@ -748,7 +644,6 @@ final class ButtonMainViewModelTests: XCTestCase {
         ButtonGetBorderUseCaseableMockTest.XCTAssert(
             stub.getBorderUseCaseMock,
             expectedNumberOfCalls: testAllDataType.expectedCalledPropertiesAndUseCases ? 1 : 0,
-            givenShape: shapeMock,
             givenBorder: themeMock.border as? BorderGeneratedMock,
             givenVariant: variantMock,
             expectedReturnValue: stub.borderMock
@@ -807,13 +702,12 @@ private final class Stub: ButtonMainViewModelStub {
         type: ButtonType = .button,
         intent: ButtonIntent = .main,
         variant: ButtonVariant = .tinted,
-        size: ButtonSize = .medium,
-        shape: ButtonShape = .rounded
+        size: ButtonSize = .medium
     ) {
         // **
         // Use Cases
         let getBorderUseCaseMock = ButtonGetBorderUseCaseableGeneratedMock()
-        getBorderUseCaseMock.executeWithShapeAndBorderAndVariantReturnValue = self.borderMock
+        getBorderUseCaseMock.executeWithBorderAndVariantReturnValue = self.borderMock
 
         let getColorsUseCaseMock = ButtonGetColorsUseCaseableGeneratedMock()
         getColorsUseCaseMock.executeWithThemeAndIntentAndVariantReturnValue = self.colorsMock
@@ -835,7 +729,6 @@ private final class Stub: ButtonMainViewModelStub {
             intent: intent,
             variant: variant,
             size: size,
-            shape: shape,
             getBorderUseCase: getBorderUseCaseMock,
             getColorsUseCase: getColorsUseCaseMock,
             getCurrentColorsUseCase: getCurrentColorsUseCaseMock,

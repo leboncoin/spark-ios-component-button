@@ -13,7 +13,6 @@ import SparkTheming
 protocol ButtonGetBorderUseCaseable {
     // sourcery: border = "Identical"
     func execute(
-        shape: ButtonShape,
         border: any Border,
         variant: ButtonVariant
     ) -> ButtonBorder
@@ -24,25 +23,14 @@ struct ButtonGetBorderUseCase: ButtonGetBorderUseCaseable {
     // MARK: - Methods
 
     func execute(
-        shape: ButtonShape,
         border: any Border,
         variant: ButtonVariant
     ) -> ButtonBorder {
-        let radius: CGFloat
-        switch shape {
-        case .square:
-            radius = 0
-        case .rounded:
-            radius = border.radius.large
-        case .pill:
-            radius = border.radius.full
-        }
-
         let width = (variant == .outlined) ? border.width.small : 0
 
         return .init(
             width: width,
-            radius: radius
+            radius: border.radius.full
         )
     }
 }

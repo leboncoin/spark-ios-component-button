@@ -17,29 +17,6 @@ final class ButtonGetBorderUseCaseTests: XCTestCase {
 
     private let borderMock = BorderGeneratedMock.mocked()
 
-    // MARK: - Tests Radius from all shapes cases
-
-    func test_execute_radius_when_shape_is_square_case() {
-        self.testExecute(
-            givenShape: .square,
-            expectedRadius: 0
-        )
-    }
-
-    func test_execute_radius_when_shape_is_rounded_case() {
-        self.testExecute(
-            givenShape: .rounded,
-            expectedRadius: self.borderMock.radius.large
-        )
-    }
-
-    func test_execute_radius_when_shape_is_pill_case() {
-        self.testExecute(
-            givenShape: .pill,
-            expectedRadius: self.borderMock.radius.full
-        )
-    }
-
     // MARK: - Tests Width drom all variants cases
 
     func test_execute_width_when_variant_is_contrast_case() {
@@ -83,28 +60,6 @@ final class ButtonGetBorderUseCaseTests: XCTestCase {
 private extension ButtonGetBorderUseCaseTests {
 
     func testExecute(
-        givenShape: ButtonShape,
-        expectedRadius: CGFloat
-    ) {
-        // GIVEN
-        let errorSuffixMessage = " for .\(givenShape) shape case"
-
-        let useCase = ButtonGetBorderUseCase()
-
-        // WHEN
-        let border = useCase.execute(
-            shape: givenShape,
-            border: self.borderMock,
-            variant: .filled
-        )
-
-        // THEN
-        XCTAssertEqual(border.radius,
-                       expectedRadius,
-                       "Wrong radius" + errorSuffixMessage)
-    }
-
-    func testExecute(
         givenVariant: ButtonVariant,
         expectedWidth: CGFloat
     ) {
@@ -115,7 +70,6 @@ private extension ButtonGetBorderUseCaseTests {
 
         // WHEN
         let border = useCase.execute(
-            shape: .pill,
             border: self.borderMock,
             variant: givenVariant
         )
@@ -124,5 +78,9 @@ private extension ButtonGetBorderUseCaseTests {
         XCTAssertEqual(border.width,
                        expectedWidth,
                        "Wrong width" + errorSuffixMessage)
+
+        XCTAssertEqual(border.radius,
+                       self.borderMock.radius.full,
+                       "Wrong radius" + errorSuffixMessage)
     }
 }

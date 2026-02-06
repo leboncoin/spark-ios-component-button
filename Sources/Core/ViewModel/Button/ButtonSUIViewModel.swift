@@ -30,7 +30,6 @@ final class ButtonSUIViewModel: ButtonViewModel, ButtonMainSUIViewModel {
         intent: ButtonIntent,
         variant: ButtonVariant,
         size: ButtonSize,
-        shape: ButtonShape,
         alignment: ButtonAlignment
     ) {
         super.init(
@@ -39,7 +38,6 @@ final class ButtonSUIViewModel: ButtonViewModel, ButtonMainSUIViewModel {
             intent: intent,
             variant: variant,
             size: size,
-            shape: shape,
             alignment: alignment
         )
     }
