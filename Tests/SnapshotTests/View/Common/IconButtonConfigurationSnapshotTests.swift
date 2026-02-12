@@ -23,7 +23,6 @@ struct IconButtonConfigurationSnapshotTests {
     let scenario: IconButtonScenarioSnapshotTests
 
     let intent: ButtonIntent
-    let shape: ButtonShape
     let size: ButtonSize
     let variant: ButtonVariant
 
@@ -38,7 +37,6 @@ struct IconButtonConfigurationSnapshotTests {
     init(
         scenario: IconButtonScenarioSnapshotTests,
         intent: ButtonIntent = .main,
-        shape: ButtonShape = .rounded,
         size: ButtonSize = .medium,
         variant: ButtonVariant = .filled,
         image: ImageEither,
@@ -48,7 +46,6 @@ struct IconButtonConfigurationSnapshotTests {
     ) {
         self.scenario = scenario
         self.intent = intent
-        self.shape = shape
         self.size = size
         self.variant = variant
         self.image = image
@@ -63,7 +60,6 @@ struct IconButtonConfigurationSnapshotTests {
         return [
             "\(self.scenario.rawValue)",
             "\(self.intent)",
-            "\(self.shape)" + "Shape",
             "\(self.size)" + "Size",
             "\(self.variant)" + "Variant",
             "\(self.state)" + "State"

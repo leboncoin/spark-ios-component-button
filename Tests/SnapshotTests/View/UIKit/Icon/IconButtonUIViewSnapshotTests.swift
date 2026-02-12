@@ -37,8 +37,7 @@ final class IconButtonUIViewSnapshotTests: UIKitComponentSnapshotTestCase {
                     theme: self.theme,
                     intent: configuration.intent,
                     variant: configuration.variant,
-                    size: configuration.size,
-                    shape: configuration.shape
+                    size: configuration.size
                 )
                 view.isHighlighted = configuration.state == .highlighted
                 view.isEnabled = configuration.state != .disabled
