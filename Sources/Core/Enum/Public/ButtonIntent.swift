@@ -1,9 +1,9 @@
 //
 //  ButtonIntent.swift
-//  Spark
+//  SparkComponentButton
 //
-//  Created by janniklas.freundt.ext on 02.05.23.
-//  Copyright © 2023 Leboncoin. All rights reserved.
+//  Created by robin.lemaire on 11/03/2026.
+//  Copyright © 2026 Leboncoin. All rights reserved.
 //
 
 import Foundation
@@ -13,7 +13,6 @@ import Foundation
 public enum ButtonIntent: CaseIterable {
     case accent
     case alert
-    case basic
     case danger
     case info
     case main
@@ -22,4 +21,7 @@ public enum ButtonIntent: CaseIterable {
     case support
     case surface
     case surfaceInverse
+
+    /// The defautl value. Equals to **.main**
+    public static let `default`: ButtonIntent = .main
 }

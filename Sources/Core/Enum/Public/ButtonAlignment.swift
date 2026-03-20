@@ -2,9 +2,11 @@
 //  ButtonAlignment.swift
 //  SparkComponentButton
 //
-//  Created by robin.lemaire on 27/06/2023.
-//  Copyright © 2023 Leboncoin. All rights reserved.
+//  Created by robin.lemaire on 11/03/2026.
+//  Copyright © 2026 Leboncoin. All rights reserved.
 //
+
+import UIKit
 
 /// The alignment of the switch.
 public enum ButtonAlignment: CaseIterable {
@@ -19,7 +21,19 @@ public enum ButtonAlignment: CaseIterable {
 
     // MARK: - Properties
 
+    /// The defautl value. Equals to **.trailingImage**
+    public static let `default`: ButtonAlignment = .trailingImage
+
     var isTrailingImage: Bool {
         return self == .trailingImage
+    }
+
+    var uiKitImagePlacement: NSDirectionalRectEdge {
+        switch self {
+        case .leadingImage:
+            return .leading
+        case .trailingImage:
+            return .trailing
+        }
     }
 }

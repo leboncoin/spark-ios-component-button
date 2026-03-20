@@ -13,101 +13,74 @@ struct ButtonGetVariantTintedUseCase: ButtonGetVariantUseCaseable {
     // MARK: - Methods
 
     func execute(
+        theme: any Theme,
         intent: ButtonIntent,
-        colors: any Colors,
-        dims: any Dims
+        isPressed: Bool
     ) -> ButtonColors {
+        let colors = theme.colors
+
         let borderColor = ColorTokenDefault.clear
-        let pressedBorderColor = ColorTokenDefault.clear
 
         switch intent {
         case .accent:
             return .init(
-                foregroundColor: colors.accent.onAccentContainer,
-                backgroundColor: colors.accent.accentContainer,
-                pressedBackgroundColor: colors.states.accentContainerPressed,
-                borderColor: borderColor,
-                pressedBorderColor: pressedBorderColor
+                tintColor: colors.accent.onAccentContainer,
+                backgroundColor: isPressed ? colors.states.accentContainerPressed : colors.accent.accentContainer,
+                borderColor: borderColor
             )
         case .alert:
             return .init(
-                foregroundColor: colors.feedback.onAlertContainer,
-                backgroundColor: colors.feedback.alertContainer,
-                pressedBackgroundColor: colors.states.alertContainerPressed,
-                borderColor: borderColor,
-                pressedBorderColor: pressedBorderColor
-            )
-        case .basic:
-            return .init(
-                foregroundColor: colors.basic.onBasicContainer,
-                backgroundColor: colors.basic.basicContainer,
-                pressedBackgroundColor: colors.states.accentContainerPressed,
-                borderColor: borderColor,
-                pressedBorderColor: pressedBorderColor
+                tintColor: colors.feedback.onAlertContainer,
+                backgroundColor: isPressed ? colors.states.alertContainerPressed : colors.feedback.alertContainer,
+                borderColor: borderColor
             )
         case .danger:
             return .init(
-                foregroundColor: colors.feedback.onErrorContainer,
-                backgroundColor: colors.feedback.errorContainer,
-                pressedBackgroundColor: colors.states.errorContainerPressed,
-                borderColor: borderColor,
-                pressedBorderColor: pressedBorderColor
+                tintColor: colors.feedback.onErrorContainer,
+                backgroundColor: isPressed ? colors.states.errorContainerPressed : colors.feedback.errorContainer,
+                borderColor: borderColor
             )
         case .info:
             return .init(
-                foregroundColor: colors.feedback.onInfoContainer,
-                backgroundColor: colors.feedback.infoContainer,
-                pressedBackgroundColor: colors.states.infoContainerPressed,
-                borderColor: borderColor,
-                pressedBorderColor: pressedBorderColor
+                tintColor: colors.feedback.onInfoContainer,
+                backgroundColor: isPressed ? colors.states.infoContainerPressed : colors.feedback.infoContainer,
+                borderColor: borderColor
             )
         case .main:
             return .init(
-                foregroundColor: colors.main.onMainContainer,
-                backgroundColor: colors.main.mainContainer,
-                pressedBackgroundColor: colors.states.mainContainerPressed,
-                borderColor: borderColor,
-                pressedBorderColor: pressedBorderColor
+                tintColor: colors.main.onMainContainer,
+                backgroundColor: isPressed ? colors.states.mainContainerPressed : colors.main.mainContainer,
+                borderColor: borderColor
             )
         case .neutral:
             return .init(
-                foregroundColor: colors.feedback.onNeutralContainer,
-                backgroundColor: colors.feedback.neutralContainer,
-                pressedBackgroundColor: colors.states.neutralContainerPressed,
-                borderColor: borderColor,
-                pressedBorderColor: pressedBorderColor
+                tintColor: colors.feedback.onNeutralContainer,
+                backgroundColor: isPressed ? colors.states.neutralContainerPressed : colors.feedback.neutralContainer,
+                borderColor: borderColor
             )
         case .success:
             return .init(
-                foregroundColor: colors.feedback.onSuccessContainer,
-                backgroundColor: colors.feedback.successContainer,
-                pressedBackgroundColor: colors.states.successContainerPressed,
-                borderColor: borderColor,
-                pressedBorderColor: pressedBorderColor
+                tintColor: colors.feedback.onSuccessContainer,
+                backgroundColor: isPressed ? colors.states.successContainerPressed : colors.feedback.successContainer,
+                borderColor: borderColor
             )
         case .support:
             return .init(
-                foregroundColor: colors.support.onSupportContainer,
-                backgroundColor: colors.support.supportContainer,
-                pressedBackgroundColor: colors.states.supportContainerPressed,
-                borderColor: borderColor,
-                pressedBorderColor: pressedBorderColor
+                tintColor: colors.support.onSupportContainer,
+                backgroundColor: isPressed ? colors.states.supportContainerPressed : colors.support.supportContainer,
+                borderColor: borderColor
             )
         case .surface:
             return .init(
-                foregroundColor: colors.base.onBackgroundVariant,
-                backgroundColor: colors.base.backgroundVariant,
-                pressedBackgroundColor: colors.states.surfacePressed,
-                borderColor: borderColor,
-                pressedBorderColor: pressedBorderColor
+                tintColor: colors.base.onBackgroundVariant,
+                backgroundColor: isPressed ? colors.states.surfacePressed : colors.base.backgroundVariant,
+                borderColor: borderColor
             )
         case .surfaceInverse:
             return .init(
-                foregroundColor: colors.base.surfaceInverse,
-                backgroundColor: ColorTokenDefault.clear,
-                pressedBackgroundColor: colors.states.surfaceInversePressed,
-                borderColor: borderColor,
-                pressedBorderColor: pressedBorderColor
+                tintColor: colors.base.surfaceInverse,
+                backgroundColor: isPressed ? colors.states.surfaceInversePressed : ColorTokenDefault.clear,
+                borderColor: borderColor
             )
         }
     }

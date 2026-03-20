@@ -1,5 +1,5 @@
 //
-//  ButtonSpacings.swift
+//  ButtonLayout.swift
 //  SparkComponentButton
 //
 //  Created by robin.lemaire on 23/06/2023.
@@ -9,7 +9,7 @@
 import Foundation
 @testable import SparkComponentButton
 
-extension ButtonSpacings {
+extension ButtonLayout {
 
     // MARK: - Properties
 

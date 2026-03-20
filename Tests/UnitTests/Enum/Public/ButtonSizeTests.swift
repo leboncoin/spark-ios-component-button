@@ -1,26 +1,33 @@
 //
 //  ButtonSizeTests.swift
-//  SparkComponentButton
+//  SparkComponentButtonTests
 //
-//  Created by robin.lemaire on 17/11/2023.
-//  Copyright © 2023 Leboncoin. All rights reserved.
+//  Created by robin.lemaire on 10/03/2026.
+//  Copyright © 2026 Leboncoin. All rights reserved.
 //
 
-import XCTest
 @testable import SparkComponentButton
+import SparkComponentSpinner
+import Testing
 
-final class ButtonSizeTests: XCTestCase {
+@Suite("Button Size Tests")
+struct ButtonSizeTests {
 
     // MARK: - Tests
 
-    func test_all_cases() {
-        // GIVEN / WHEN
-        let cases = ButtonSize.allCases
+    @Test("All cases contains expected cases")
+    func allCasesContainsExpectedCases() {
+        // GIVEN
+        let expectedCases: [ButtonSize] = [.medium, .large]
 
-        // THEN
-        XCTAssertEqual(
-            cases,
-            [.medium, .large]
-        )
+        // WHEN / THEN
+        #expect(ButtonSize.allCases.count == expectedCases.count)
+        #expect(Set(ButtonSize.allCases) == Set(expectedCases))
+    }
+
+    @Test("Default value is medium")
+    func defaultValueIsMedium() {
+        // GIVEN / WHEN / THEN
+        #expect(ButtonSize.default == .medium)
     }
 }

@@ -1,0 +1,220 @@
+//
+//  ButtonGetVariantOutlinedUseCaseDeprecatedTests.swift
+//  SparkComponentButton
+//
+//  Created by janniklas.freundt.ext on 16.05.23.
+//  Copyright © 2023 Leboncoin. All rights reserved.
+//
+
+import XCTest
+import SwiftUI
+@testable import SparkComponentButton
+@_spi(SI_SPI) import SparkThemingTesting
+import SparkTheming
+
+final class ButtonGetVariantOutlinedUseCaseDeprecatedTests: ButtonVariantUseCaseDeprecatedTests {
+
+    // MARK: - Tests
+    func test_main_colors() throws {
+        // Given
+        let sut = self.sut()
+
+        // When
+        let colors = sut.execute(intent: .main, colors: self.theme.colors, dims: self.theme.dims)
+
+        // Then
+        XCTAssertEqual(
+            [colors.foregroundColor,
+             colors.backgroundColor,
+             colors.pressedBackgroundColor,
+             colors.borderColor,
+             colors.pressedBorderColor].map(\.color),
+            [self.theme.colors.main.main,
+             ColorTokenDefault.clear,
+             self.theme.colors.main.main.opacity(self.theme.dims.dim5),
+             self.theme.colors.main.main,
+             self.theme.colors.main.main
+            ].map(\.color))
+    }
+
+    func test_support_colors() throws {
+        // Given
+        let sut = self.sut()
+
+        // When
+        let colors = sut.execute(intent: .support, colors: self.theme.colors, dims: self.theme.dims)
+
+        // Then
+        XCTAssertEqual(
+            [colors.foregroundColor,
+             colors.backgroundColor,
+             colors.pressedBackgroundColor,
+             colors.borderColor,
+             colors.pressedBorderColor].map(\.color),
+            [self.theme.colors.support.support,
+             ColorTokenDefault.clear,
+             self.theme.colors.support.support.opacity(self.theme.dims.dim5),
+             self.theme.colors.support.support,
+             self.theme.colors.support.support
+            ].map(\.color))
+    }
+
+    func test_neutral_colors() throws {
+        // Given
+        let sut = self.sut()
+
+        // When
+        let colors = sut.execute(intent: .neutral, colors: self.theme.colors, dims: self.theme.dims)
+
+        // Then
+        XCTAssertEqual(
+            [colors.foregroundColor,
+             colors.backgroundColor,
+             colors.pressedBackgroundColor,
+             colors.borderColor,
+             colors.pressedBorderColor].map(\.color),
+            [self.theme.colors.feedback.neutral,
+             ColorTokenDefault.clear,
+             self.theme.colors.feedback.neutral.opacity(self.theme.dims.dim5),
+             self.theme.colors.feedback.neutral,
+             self.theme.colors.feedback.neutral
+            ].map(\.color))
+    }
+
+    func test_alert_colors() throws {
+        // Given
+        let sut = self.sut()
+
+        // When
+        let colors = sut.execute(intent: .alert, colors: self.theme.colors, dims: self.theme.dims)
+
+        // Then
+        XCTAssertEqual(
+            [colors.foregroundColor,
+             colors.backgroundColor,
+             colors.pressedBackgroundColor,
+             colors.borderColor,
+             colors.pressedBorderColor].map(\.color),
+            [self.theme.colors.feedback.alert,
+             ColorTokenDefault.clear,
+             self.theme.colors.feedback.alert.opacity(self.theme.dims.dim5),
+             self.theme.colors.feedback.alert,
+             self.theme.colors.feedback.alert
+            ].map(\.color))
+    }
+
+    func test_success_colors() throws {
+        // Given
+        let sut = self.sut()
+
+        // When
+        let colors = sut.execute(intent: .success, colors: self.theme.colors, dims: self.theme.dims)
+
+        // Then
+        XCTAssertEqual(
+            [colors.foregroundColor,
+             colors.backgroundColor,
+             colors.pressedBackgroundColor,
+             colors.borderColor,
+             colors.pressedBorderColor].map(\.color),
+            [self.theme.colors.feedback.success,
+             ColorTokenDefault.clear,
+             self.theme.colors.feedback.success.opacity(self.theme.dims.dim5),
+             self.theme.colors.feedback.success,
+             self.theme.colors.feedback.success
+            ].map(\.color))
+    }
+
+    func test_danger_colors() throws {
+        // Given
+        let sut = self.sut()
+
+        // When
+        let colors = sut.execute(intent: .danger, colors: self.theme.colors, dims: self.theme.dims)
+
+        // Then
+        XCTAssertEqual(
+            [colors.foregroundColor,
+             colors.backgroundColor,
+             colors.pressedBackgroundColor,
+             colors.borderColor,
+             colors.pressedBorderColor].map(\.color),
+            [self.theme.colors.feedback.error,
+             ColorTokenDefault.clear,
+             self.theme.colors.feedback.error.opacity(self.theme.dims.dim5),
+             self.theme.colors.feedback.error,
+             self.theme.colors.feedback.error
+            ].map(\.color))
+    }
+
+    func test_surface_colors() throws {
+        // Given
+        let sut = self.sut()
+
+        // When
+        let colors = sut.execute(intent: .surface, colors: self.theme.colors, dims: self.theme.dims)
+
+        // Then
+        XCTAssertEqual(
+            [colors.foregroundColor,
+             colors.backgroundColor,
+             colors.pressedBackgroundColor,
+             colors.borderColor,
+             colors.pressedBorderColor].map(\.color),
+            [self.theme.colors.base.surface,
+             ColorTokenDefault.clear,
+             self.theme.colors.base.surface.opacity(self.theme.dims.dim5),
+             self.theme.colors.base.surface,
+             self.theme.colors.base.surface
+            ].map(\.color))
+    }
+
+    func test_surfaceInverse_colors() throws {
+        // Given
+        let sut = self.sut()
+
+        // When
+        let colors = sut.execute(intent: .surfaceInverse, colors: self.theme.colors, dims: self.theme.dims)
+
+        // Then
+        XCTAssertEqual(
+            [colors.foregroundColor,
+             colors.backgroundColor,
+             colors.pressedBackgroundColor,
+             colors.borderColor,
+             colors.pressedBorderColor].map(\.color),
+            [self.theme.colors.base.surfaceInverse,
+             ColorTokenDefault.clear,
+             self.theme.colors.base.surfaceInverse.opacity(self.theme.dims.dim5),
+             self.theme.colors.base.surfaceInverse,
+             self.theme.colors.base.surfaceInverse
+            ].map(\.color))
+    }
+
+    func test_info_colors() throws {
+        // Given
+        let sut = self.sut()
+
+        // When
+        let colors = sut.execute(intent: .info, colors: self.theme.colors, dims: self.theme.dims)
+
+        // Then
+        XCTAssertEqual(
+            [colors.foregroundColor,
+             colors.backgroundColor,
+             colors.pressedBackgroundColor,
+             colors.borderColor,
+             colors.pressedBorderColor].map(\.color),
+            [self.theme.colors.feedback.info,
+             ColorTokenDefault.clear,
+             self.theme.colors.feedback.info.opacity(self.theme.dims.dim5),
+             self.theme.colors.feedback.info,
+             self.theme.colors.feedback.info
+            ].map(\.color))
+    }
+
+    // MARK: - Helper Functions
+    func sut() -> ButtonGetVariantOutlinedUseCaseDeprecated {
+        return ButtonGetVariantOutlinedUseCaseDeprecated()
+    }
+}

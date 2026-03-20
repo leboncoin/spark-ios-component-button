@@ -1,5 +1,5 @@
 //
-//  ButtonCurrentColors.swift
+//  ButtonColorsDeprecated.swift
 //  SparkComponentButton
 //
 //  Created by robin.lemaire on 27/06/2023.
@@ -10,7 +10,7 @@
 @_spi(SI_SPI) import SparkThemingTesting
 import SparkTheming
 
-extension ButtonCurrentColors {
+extension ButtonColorsDeprecated {
 
     // MARK: - Properties
 

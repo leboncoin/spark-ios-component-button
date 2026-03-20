@@ -13,103 +13,75 @@ struct ButtonGetVariantGhostUseCase: ButtonGetVariantUseCaseable {
     // MARK: - Methods
 
     func execute(
+        theme: any Theme,
         intent: ButtonIntent,
-        colors: any Colors,
-        dims: any Dims
+        isPressed: Bool
     ) -> ButtonColors {
-        let borderColor = ColorTokenDefault.clear
-        let pressedBorderColor = ColorTokenDefault.clear
+        let colors = theme.colors
+        let dim5 = theme.dims.dim5
 
-        let dim5 = dims.dim5
+        let borderColor = ColorTokenDefault.clear
 
         switch intent {
         case .accent:
             return .init(
-                foregroundColor: colors.accent.onAccentContainer,
-                backgroundColor: ColorTokenDefault.clear,
-                pressedBackgroundColor: colors.accent.accent.opacity(dim5),
-                borderColor: borderColor,
-                pressedBorderColor: pressedBorderColor
+                tintColor: colors.accent.onAccentContainer,
+                backgroundColor: isPressed ? colors.accent.accent.opacity(dim5) : ColorTokenDefault.clear,
+                borderColor: borderColor
             )
         case .alert:
             return .init(
-                foregroundColor: colors.feedback.onAlertContainer,
-                backgroundColor: ColorTokenDefault.clear,
-                pressedBackgroundColor: colors.feedback.alert.opacity(dim5),
-                borderColor: borderColor,
-                pressedBorderColor: pressedBorderColor
-            )
-        case .basic:
-            return .init(
-                foregroundColor: colors.basic.onBasicContainer,
-                backgroundColor: ColorTokenDefault.clear,
-                pressedBackgroundColor: colors.basic.basic.opacity(dim5),
-                borderColor: borderColor,
-                pressedBorderColor: pressedBorderColor
+                tintColor: colors.feedback.onAlertContainer,
+                backgroundColor: isPressed ? colors.feedback.alert.opacity(dim5) : ColorTokenDefault.clear,
+                borderColor: borderColor
             )
         case .danger:
             return .init(
-                foregroundColor: colors.feedback.onErrorContainer,
-                backgroundColor: ColorTokenDefault.clear,
-                pressedBackgroundColor: colors.feedback.error.opacity(dim5),
-                borderColor: borderColor,
-                pressedBorderColor: pressedBorderColor
+                tintColor: colors.feedback.onErrorContainer,
+                backgroundColor: isPressed ? colors.feedback.error.opacity(dim5) : ColorTokenDefault.clear,
+                borderColor: borderColor
             )
         case .info:
             return .init(
-                foregroundColor: colors.feedback.onInfoContainer,
-                backgroundColor: ColorTokenDefault.clear,
-                pressedBackgroundColor: colors.feedback.info.opacity(dim5),
-                borderColor: borderColor,
-                pressedBorderColor: pressedBorderColor
+                tintColor: colors.feedback.onInfoContainer,
+                backgroundColor: isPressed ? colors.feedback.info.opacity(dim5) : ColorTokenDefault.clear,
+                borderColor: borderColor
             )
         case .main:
             return .init(
-                foregroundColor: colors.main.onMainContainer,
-                backgroundColor: ColorTokenDefault.clear,
-                pressedBackgroundColor: colors.main.main.opacity(dim5),
-                borderColor: borderColor,
-                pressedBorderColor: pressedBorderColor
+                tintColor: colors.main.onMainContainer,
+                backgroundColor: isPressed ? colors.main.main.opacity(dim5) : ColorTokenDefault.clear,
+                borderColor: borderColor
             )
         case .neutral:
             return .init(
-                foregroundColor: colors.feedback.onNeutralContainer,
-                backgroundColor: ColorTokenDefault.clear,
-                pressedBackgroundColor: colors.feedback.neutral.opacity(dim5),
-                borderColor: borderColor,
-                pressedBorderColor: pressedBorderColor
+                tintColor: colors.feedback.onNeutralContainer,
+                backgroundColor: isPressed ? colors.feedback.neutral.opacity(dim5) : ColorTokenDefault.clear,
+                borderColor: borderColor
             )
         case .success:
             return .init(
-                foregroundColor: colors.feedback.onSuccessContainer,
-                backgroundColor: ColorTokenDefault.clear,
-                pressedBackgroundColor: colors.feedback.success.opacity(dim5),
-                borderColor: borderColor,
-                pressedBorderColor: pressedBorderColor
+                tintColor: colors.feedback.onSuccessContainer,
+                backgroundColor: isPressed ? colors.feedback.success.opacity(dim5) : ColorTokenDefault.clear,
+                borderColor: borderColor
             )
         case .support:
             return .init(
-                foregroundColor: colors.support.onSupportContainer,
-                backgroundColor: ColorTokenDefault.clear,
-                pressedBackgroundColor: colors.support.support.opacity(dim5),
-                borderColor: borderColor,
-                pressedBorderColor: pressedBorderColor
+                tintColor: colors.support.onSupportContainer,
+                backgroundColor: isPressed ? colors.support.support.opacity(dim5) : ColorTokenDefault.clear,
+                borderColor: borderColor
             )
         case .surface:
             return .init(
-                foregroundColor: colors.base.surface,
-                backgroundColor: ColorTokenDefault.clear,
-                pressedBackgroundColor: colors.base.surface.opacity(dim5),
-                borderColor: borderColor,
-                pressedBorderColor: pressedBorderColor
+                tintColor: colors.base.surface,
+                backgroundColor: isPressed ? colors.base.surface.opacity(dim5) : ColorTokenDefault.clear,
+                borderColor: borderColor
             )
         case .surfaceInverse:
             return .init(
-                foregroundColor: colors.base.surfaceInverse,
-                backgroundColor: ColorTokenDefault.clear,
-                pressedBackgroundColor: colors.base.surfaceInverse.opacity(dim5),
-                borderColor: borderColor,
-                pressedBorderColor: pressedBorderColor
+                tintColor: colors.base.surfaceInverse,
+                backgroundColor: isPressed ? colors.base.surfaceInverse.opacity(dim5) : ColorTokenDefault.clear,
+                borderColor: borderColor
             )
         }
     }

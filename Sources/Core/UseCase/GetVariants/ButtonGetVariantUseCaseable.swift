@@ -10,6 +10,10 @@ import SparkTheming
 
 // sourcery: AutoMockable, AutoMockTest
 protocol ButtonGetVariantUseCaseable {
-    // sourcery: colors = "Identical", dims = "Identical"
-    func execute(intent: ButtonIntent, colors: any Colors, dims: any Dims) -> ButtonColors
+    // sourcery: theme = "Identical"
+    func execute(
+        theme: any Theme,
+        intent: ButtonIntent,
+        isPressed: Bool
+    ) -> ButtonColors
 }

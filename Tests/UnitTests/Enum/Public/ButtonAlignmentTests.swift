@@ -1,35 +1,68 @@
 //
 //  ButtonAlignmentTests.swift
-//  SparkComponentButton
+//  SparkComponentButtonTests
 //
-//  Created by robin.lemaire on 17/11/2023.
-//  Copyright © 2023 Leboncoin. All rights reserved.
+//  Created by robin.lemaire on 10/03/2026.
+//  Copyright © 2026 Leboncoin. All rights reserved.
 //
 
-import XCTest
 @testable import SparkComponentButton
+import Testing
 
-final class ButtonAlignmentTests: XCTestCase {
+@Suite("Button Alignment Tests")
+struct ButtonAlignmentTests {
 
     // MARK: - Tests
 
-    func test_isTrailingImage_for_all_cases() {
+    @Test("All cases contains expected cases")
+    func allCasesContainsExpectedCases() {
         // GIVEN
-        let items: [(givenAlignment: ButtonAlignment, expectedIsTrailingImage: Bool)] = [
-            (givenAlignment: .leadingImage, expectedIsTrailingImage: false),
-            (givenAlignment: .trailingImage, expectedIsTrailingImage: true)
-        ]
+        let expectedCases: [ButtonAlignment] = [.leadingImage, .trailingImage]
 
-        for item in items {
-            // WHEN
-            let isTrailingImage = item.givenAlignment.isTrailingImage
+        // WHEN / THEN
+        #expect(ButtonAlignment.allCases.count == expectedCases.count)
+        #expect(Set(ButtonAlignment.allCases) == Set(expectedCases))
+    }
 
-            // THEN
-            XCTAssertEqual(
-                isTrailingImage,
-                item.expectedIsTrailingImage,
-                "Wrong isTrailingImage for .\(item.givenAlignment) cases"
-            )
-        }
+    @Test("Default value is trailingImage")
+    func defaultValueIsTrailingImage() {
+        // GIVEN / WHEN / THEN
+        #expect(ButtonAlignment.default == .trailingImage)
+    }
+
+    @Test("isTrailingImage is true when alignment is trailingImage")
+    func isTrailingImageIsTrueWhenAlignmentIsTrailingImage() {
+        // GIVEN
+        let alignment = ButtonAlignment.trailingImage
+
+        // WHEN / THEN
+        #expect(alignment.isTrailingImage == true)
+    }
+
+    @Test("isTrailingImage is false when alignment is leadingImage")
+    func isTrailingImageIsFalseWhenAlignmentIsLeadingImage() {
+        // GIVEN
+        let alignment = ButtonAlignment.leadingImage
+
+        // WHEN / THEN
+        #expect(alignment.isTrailingImage == false)
+    }
+
+    @Test("uiKitImagePlacement returns leading when alignment is leadingImage")
+    func uiKitImagePlacementReturnsLeadingWhenAlignmentIsLeadingImage() {
+        // GIVEN
+        let alignment = ButtonAlignment.leadingImage
+
+        // WHEN / THEN
+        #expect(alignment.uiKitImagePlacement == .leading)
+    }
+
+    @Test("uiKitImagePlacement returns trailing when alignment is trailingImage")
+    func uiKitImagePlacementReturnsTrailingWhenAlignmentIsTrailingImage() {
+        // GIVEN
+        let alignment = ButtonAlignment.trailingImage
+
+        // WHEN / THEN
+        #expect(alignment.uiKitImagePlacement == .trailing)
     }
 }
