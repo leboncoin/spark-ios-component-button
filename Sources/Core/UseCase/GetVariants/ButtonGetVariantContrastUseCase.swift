@@ -38,14 +38,6 @@ struct ButtonVariantGetContrastUseCase: ButtonGetVariantUseCaseable {
                 borderColor: borderColor,
                 pressedBorderColor: pressedBorderColor
             )
-        case .basic:
-            return .init(
-                foregroundColor: colors.basic.onBasicContainer,
-                backgroundColor: backgroundColor,
-                pressedBackgroundColor: colors.states.basicContainerPressed,
-                borderColor: borderColor,
-                pressedBorderColor: pressedBorderColor
-            )
         case .danger:
             return .init(
                 foregroundColor: colors.feedback.onErrorContainer,

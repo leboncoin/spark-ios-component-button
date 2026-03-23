@@ -13,7 +13,6 @@ import Foundation
 public enum ButtonIntent: CaseIterable {
     case accent
     case alert
-    case basic
     case danger
     case info
     case main
