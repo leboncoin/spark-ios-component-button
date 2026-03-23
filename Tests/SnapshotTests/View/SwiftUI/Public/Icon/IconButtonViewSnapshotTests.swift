@@ -38,7 +38,6 @@ final class IconButtonViewSnapshotTests: SwiftUIComponentSnapshotTestCase {
                     intent: configuration.intent,
                     variant: configuration.variant,
                     size: configuration.size,
-                    shape: configuration.shape,
                     action: {}
                 )
                     .disabled(configuration.state == .disabled)

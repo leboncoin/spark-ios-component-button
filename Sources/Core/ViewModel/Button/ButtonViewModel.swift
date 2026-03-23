@@ -41,7 +41,6 @@ class ButtonViewModel: ButtonMainViewModel {
         intent: ButtonIntent,
         variant: ButtonVariant,
         size: ButtonSize,
-        shape: ButtonShape,
         alignment: ButtonAlignment,
         getSpacingsUseCase: any ButtonGetSpacingsUseCaseable = ButtonGetSpacingsUseCase()
     ) {
@@ -54,8 +53,7 @@ class ButtonViewModel: ButtonMainViewModel {
             theme: theme,
             intent: intent,
             variant: variant,
-            size: size,
-            shape: shape
+            size: size
         )
     }
 

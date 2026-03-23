@@ -33,6 +33,7 @@ public struct ButtonView: View {
     ///   - shape: The shape of the button.
     ///   - alignment: The alignment of the button.
     ///   - action: The action of the button.
+    @available(*, deprecated, message: "There is no shape anymore. There is only pill button.")
     public init(
         theme: any Theme,
         intent: ButtonIntent,
@@ -47,7 +48,40 @@ public struct ButtonView: View {
             intent: intent,
             variant: variant,
             size: size,
-            shape: shape,
+            alignment: alignment
+        )
+        self.viewModel = viewModel
+
+        // **
+        // Scaled Metric
+        self._horizontalSpacing = .init(value: viewModel.spacings?.horizontalSpacing ?? .zero)
+        self._horizontalPadding = .init(value: viewModel.spacings?.horizontalPadding ?? .zero)
+        // **
+
+        self.action = action
+    }
+
+    /// Initialize a new button view.
+    /// - Parameters:
+    ///   - theme: The spark theme of the button.
+    ///   - intent: The intent of the button.
+    ///   - variant: The variant of the button.
+    ///   - size: The size of the button.
+    ///   - alignment: The alignment of the button.
+    ///   - action: The action of the button.
+    public init(
+        theme: any Theme,
+        intent: ButtonIntent,
+        variant: ButtonVariant,
+        size: ButtonSize,
+        alignment: ButtonAlignment,
+        action: @escaping () -> Void
+    ) {
+        let viewModel = ButtonSUIViewModel(
+            theme: theme,
+            intent: intent,
+            variant: variant,
+            size: size,
             alignment: alignment
         )
         self.viewModel = viewModel
