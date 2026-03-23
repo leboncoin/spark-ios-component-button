@@ -18,6 +18,7 @@ enum IconButtonScenarioSnapshotTests: String, CaseIterable {
     case test2
     case test3
     case test4
+    case test5
 
     // MARK: - Type Alias
 
@@ -35,6 +36,8 @@ enum IconButtonScenarioSnapshotTests: String, CaseIterable {
             return self.test3(isSwiftUIComponent: isSwiftUIComponent)
         case .test4:
             return self.test4(isSwiftUIComponent: isSwiftUIComponent)
+        case .test5:
+            return self.test5(isSwiftUIComponent: isSwiftUIComponent)
         }
     }
 
@@ -47,6 +50,7 @@ enum IconButtonScenarioSnapshotTests: String, CaseIterable {
     /// Content:
     /// - **intents: all**
     /// - alignment: default
+    /// - shape: default
     /// - size: default
     /// - variant: default
     /// - content: default
@@ -75,18 +79,53 @@ enum IconButtonScenarioSnapshotTests: String, CaseIterable {
 
     /// Test 2
     ///
-    /// Description: To test all sizes for all a11y sizes
+    /// Description: To test all shapes for all a11y sizes
     ///
     /// Content:
     /// - intent: default
     /// - alignment: default
-    /// - **sizes: all**
+    /// - **shapes: all**
+    /// - size: default
     /// - variant: default
     /// - content: default
     /// - state: default
     /// - mode: default
     /// - **a11y: all**
     private func test2(isSwiftUIComponent: Bool) -> [IconButtonConfigurationSnapshotTests] {
+        let shapes = ButtonShape.allCases
+
+        return shapes.compactMap { shape -> IconButtonConfigurationSnapshotTests? in
+            guard let image = ImageEither.mock(
+                isSwiftUIComponent: isSwiftUIComponent,
+                for: .normal
+            ) else {
+                return nil
+            }
+
+            return .init(
+                scenario: self,
+                shape: shape,
+                image: image,
+                sizes: Constants.Sizes.all
+            )
+        }
+    }
+
+    /// Test 3
+    ///
+    /// Description: To test all sizes for all a11y sizes
+    ///
+    /// Content:
+    /// - intent: default
+    /// - alignment: default
+    /// - shape: default
+    /// - **sizes: all**
+    /// - variant: default
+    /// - content: default
+    /// - state: default
+    /// - mode: default
+    /// - **a11y: all**
+    private func test3(isSwiftUIComponent: Bool) -> [IconButtonConfigurationSnapshotTests] {
         let sizes = ButtonSize.allCases
 
         return sizes.compactMap { size -> IconButtonConfigurationSnapshotTests? in
@@ -106,20 +145,21 @@ enum IconButtonScenarioSnapshotTests: String, CaseIterable {
         }
     }
 
-    /// Test 3
+    /// Test 4
     ///
     /// Description: To test all variants
     ///
     /// Content:
     /// - intent: default
     /// - alignment: default
+    /// - shape: default
     /// - size: default
     /// - **variants: all**
     /// - content: default
     /// - state: default
     /// - mode: default
     /// - a11y: default
-    private func test3(isSwiftUIComponent: Bool) -> [IconButtonConfigurationSnapshotTests] {
+    private func test4(isSwiftUIComponent: Bool) -> [IconButtonConfigurationSnapshotTests] {
         let variants = ButtonVariant.allCases
 
         return variants.compactMap { variant -> IconButtonConfigurationSnapshotTests? in
@@ -138,20 +178,21 @@ enum IconButtonScenarioSnapshotTests: String, CaseIterable {
         }
     }
 
-    /// Test 4
+    /// Test 5
     ///
     /// Description: To test all states
     ///
     /// Content:
     /// - intent: default
     /// - alignment: default
+    /// - shape: default
     /// - size: default
     /// - variant: default
     /// - content: default
     /// - **states: all**
     /// - mode: default
     /// - a11y: default
-    private func test4(isSwiftUIComponent: Bool) -> [IconButtonConfigurationSnapshotTests] {
+    private func test5(isSwiftUIComponent: Bool) -> [IconButtonConfigurationSnapshotTests] {
         let states = ControlState.allCases
 
         return states.compactMap { state -> IconButtonConfigurationSnapshotTests? in

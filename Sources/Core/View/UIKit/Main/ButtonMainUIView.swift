@@ -101,8 +101,14 @@ public class ButtonMainUIView: UIControl {
     }
 
     /// The shape of the button.
-    @available(*, deprecated, message: "Not used anymore. There is only pill button now.")
-    public var shape: ButtonShape = .pill
+    public var shape: ButtonShape {
+        get {
+            return self.viewModel.shape
+        }
+        set {
+            self.viewModel.shape = newValue
+        }
+    }
 
     /// A Boolean value indicating whether the button is in the enabled state.
     public override var isEnabled: Bool {

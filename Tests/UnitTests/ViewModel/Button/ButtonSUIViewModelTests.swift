@@ -22,6 +22,7 @@ final class ButtonSUIViewModelTests: XCTestCase {
             intent: .main,
             variant: .filled,
             size: .medium,
+            shape: .rounded,
             alignment: .leadingImage
         )
 

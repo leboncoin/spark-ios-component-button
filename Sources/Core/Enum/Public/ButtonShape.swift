@@ -9,7 +9,6 @@
 import Foundation
 
 /// Buttons can have different shapes.
-@available(*, deprecated, message: "Not used anymore. There is only pill button now.")
 public enum ButtonShape: CaseIterable {
     /// Button with pill-like shape.
     case pill

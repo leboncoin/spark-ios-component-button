@@ -262,6 +262,7 @@ private final class Stub: ButtonViewModelStub {
             intent: .main,
             variant: .filled,
             size: .medium,
+            shape: .pill,
             alignment: alignment,
             getSpacingsUseCase: getSpacingsUseCaseMock
         )
