@@ -137,6 +137,7 @@ public final class ButtonUIView: ButtonMainUIView {
     ///   - size: The size of the button.
     ///   - shape: The shape of the button.
     ///   - alignment: The alignment of the button.
+    @available(*, deprecated, message: "There is no shape anymore. There is only pill button.")
     public init(
         theme: any Theme,
         intent: ButtonIntent,
@@ -151,7 +152,35 @@ public final class ButtonUIView: ButtonMainUIView {
             intent: intent,
             variant: variant,
             size: size,
-            shape: shape,
+            alignment: alignment
+        )
+
+        self.viewModel = viewModel
+
+        super.init(viewModel: viewModel)
+    }
+
+    /// Initialize a new button view.
+    /// - Parameters:
+    ///   - theme: The spark theme of the button.
+    ///   - intent: The intent of the button.
+    ///   - variant: The variant of the button.
+    ///   - size: The size of the button.
+    ///   - shape: The shape of the button.
+    ///   - alignment: The alignment of the button.
+    public init(
+        theme: any Theme,
+        intent: ButtonIntent,
+        variant: ButtonVariant,
+        size: ButtonSize,
+        alignment: ButtonAlignment
+    ) {
+        let viewModel = ButtonViewModel(
+            for: .uiKit,
+            theme: theme,
+            intent: intent,
+            variant: variant,
+            size: size,
             alignment: alignment
         )
 

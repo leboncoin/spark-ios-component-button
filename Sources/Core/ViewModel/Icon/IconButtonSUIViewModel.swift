@@ -27,16 +27,14 @@ final class IconButtonSUIViewModel: IconButtonViewModel, ButtonMainSUIViewModel 
         theme: any Theme,
         intent: ButtonIntent,
         variant: ButtonVariant,
-        size: ButtonSize,
-        shape: ButtonShape
+        size: ButtonSize
     ) {
         super.init(
             for: .swiftUI,
             theme: theme,
             intent: intent,
             variant: variant,
-            size: size,
-            shape: shape
+            size: size
         )
     }
 }

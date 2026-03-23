@@ -37,7 +37,6 @@ final class ButtonUIViewSnapshotTests: UIKitComponentSnapshotTestCase {
                     intent: configuration.intent,
                     variant: configuration.variant,
                     size: configuration.size,
-                    shape: configuration.shape,
                     alignment: configuration.alignment
                 )
                 view.isHighlighted = configuration.state == .highlighted

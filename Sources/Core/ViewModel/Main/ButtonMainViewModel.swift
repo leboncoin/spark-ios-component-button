@@ -45,13 +45,6 @@ class ButtonMainViewModel: ObservableObject {
         }
     }
 
-    var shape: ButtonShape {
-        didSet {
-            guard self.shape != oldValue else { return }
-            self.borderDidUpdate()
-        }
-    }
-
     var isEnabled: Bool = true {
         didSet {
             guard self.isEnabled != oldValue else { return }
@@ -94,7 +87,6 @@ class ButtonMainViewModel: ObservableObject {
         intent: ButtonIntent,
         variant: ButtonVariant,
         size: ButtonSize,
-        shape: ButtonShape,
         getBorderUseCase: any ButtonGetBorderUseCaseable = ButtonGetBorderUseCase(),
         getColorsUseCase: any ButtonGetColorsUseCaseable = ButtonGetColorsUseCase(),
         getCurrentColorsUseCase: any ButtonGetCurrentColorsUseCaseable = ButtonGetCurrentColorsUseCase(),
@@ -107,7 +99,6 @@ class ButtonMainViewModel: ObservableObject {
         self.intent = intent
         self.variant = variant
         self.size = size
-        self.shape = shape
 
         self.getBorderUseCase = getBorderUseCase
         self.getColorsUseCase = getColorsUseCase
@@ -185,7 +176,6 @@ class ButtonMainViewModel: ObservableObject {
 
     private func borderDidUpdate() {
         self.border = self.getBorderUseCase.execute(
-            shape: self.shape,
             border: self.theme.border,
             variant: self.variant
         )
