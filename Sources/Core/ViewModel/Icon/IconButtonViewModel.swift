@@ -18,7 +18,8 @@ class IconButtonViewModel: ButtonMainViewModel {
         theme: any Theme,
         intent: ButtonIntent,
         variant: ButtonVariant,
-        size: ButtonSize
+        size: ButtonSize,
+        shape: ButtonShape
     ) {
         super.init(
             for: frameworkType,
@@ -26,7 +27,8 @@ class IconButtonViewModel: ButtonMainViewModel {
             theme: theme,
             intent: intent,
             variant: variant,
-            size: size
+            size: size,
+            shape: shape
         )
     }
 }

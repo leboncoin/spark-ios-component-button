@@ -23,6 +23,7 @@ struct ButtonConfigurationSnapshotTests {
 
     let intent: ButtonIntent
     let alignment: ButtonAlignment
+    let shape: ButtonShape
     let size: ButtonSize
     let variant: ButtonVariant
 
@@ -38,6 +39,7 @@ struct ButtonConfigurationSnapshotTests {
         scenario: ButtonScenarioSnapshotTests,
         intent: ButtonIntent = .main,
         alignment: ButtonAlignment = .leadingImage,
+        shape: ButtonShape = .rounded,
         size: ButtonSize = .medium,
         variant: ButtonVariant = .filled,
         content: ButtonContentType = .title("My Title"),
@@ -48,6 +50,7 @@ struct ButtonConfigurationSnapshotTests {
         self.scenario = scenario
         self.intent = intent
         self.alignment = alignment
+        self.shape = shape
         self.size = size
         self.variant = variant
         self.content = content
@@ -63,6 +66,7 @@ struct ButtonConfigurationSnapshotTests {
             "\(self.scenario.rawValue)",
             "\(self.intent)",
             "\(self.alignment)" + "Alignment",
+            "\(self.shape)" + "Shape",
             "\(self.size)" + "Size",
             "\(self.variant)" + "Variant",
             "\(self.content.name)" + "Content",

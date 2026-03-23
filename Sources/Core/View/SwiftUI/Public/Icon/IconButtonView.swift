@@ -30,7 +30,6 @@ public struct IconButtonView: View {
     ///   - size: The size of the button.
     ///   - shape: The shape of the button.
     ///   - action: The action of the button.
-    @available(*, deprecated, message: "There is no shape anymore. There is only pill button.")
     public init(
         theme: any Theme,
         intent: ButtonIntent,
@@ -43,33 +42,8 @@ public struct IconButtonView: View {
             theme: theme,
             intent: intent,
             variant: variant,
-            size: size
-        )
-        self.viewModel = viewModel
-
-        self.action = action
-    }
-
-    /// Initialize a new button view.
-    /// - Parameters:
-    ///   - theme: The spark theme of the button.
-    ///   - intent: The intent of the button.
-    ///   - variant: The variant of the button.
-    ///   - size: The size of the button.
-    ///   - shape: The shape of the button.
-    ///   - action: The action of the button.
-    public init(
-        theme: any Theme,
-        intent: ButtonIntent,
-        variant: ButtonVariant,
-        size: ButtonSize,
-        action: @escaping () -> Void
-    ) {
-        let viewModel = IconButtonSUIViewModel(
-            theme: theme,
-            intent: intent,
-            variant: variant,
-            size: size
+            size: size,
+            shape: shape
         )
         self.viewModel = viewModel
 

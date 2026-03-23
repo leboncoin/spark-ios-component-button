@@ -21,7 +21,8 @@ final class IconButtonSUIViewModelTests: XCTestCase {
             theme: ThemeGeneratedMock.mocked(),
             intent: .main,
             variant: .filled,
-            size: .medium
+            size: .medium,
+            shape: .rounded
         )
 
         // THEN
