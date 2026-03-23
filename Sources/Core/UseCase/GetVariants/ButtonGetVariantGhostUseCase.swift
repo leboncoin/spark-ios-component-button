@@ -39,14 +39,6 @@ struct ButtonGetVariantGhostUseCase: ButtonGetVariantUseCaseable {
                 borderColor: borderColor,
                 pressedBorderColor: pressedBorderColor
             )
-        case .basic:
-            return .init(
-                foregroundColor: colors.basic.onBasicContainer,
-                backgroundColor: ColorTokenDefault.clear,
-                pressedBackgroundColor: colors.basic.basic.opacity(dim5),
-                borderColor: borderColor,
-                pressedBorderColor: pressedBorderColor
-            )
         case .danger:
             return .init(
                 foregroundColor: colors.feedback.onErrorContainer,

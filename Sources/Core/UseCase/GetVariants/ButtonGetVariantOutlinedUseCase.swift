@@ -38,14 +38,6 @@ struct ButtonGetVariantOutlinedUseCase: ButtonGetVariantUseCaseable {
                 borderColor: colors.feedback.alert,
                 pressedBorderColor: colors.feedback.alert
             )
-        case .basic:
-            return .init(
-                foregroundColor: colors.basic.basic,
-                backgroundColor: backgroundColor,
-                pressedBackgroundColor: colors.basic.basic.opacity(dim5),
-                borderColor: colors.basic.basic,
-                pressedBorderColor: colors.basic.basic
-            )
         case .danger:
             return .init(
                 foregroundColor: colors.feedback.error,
