@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-public extension SparkButton {
+public extension SparkButton where Content == EmptyView {
 
     // MARK: - Initialization
 

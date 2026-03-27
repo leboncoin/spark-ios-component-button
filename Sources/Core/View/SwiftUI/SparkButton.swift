@@ -11,6 +11,7 @@ import SwiftUI
 import SparkComponentSpinner
 
 // TODO: Add a environement pour supprimer la règle de la hauteur et les radius (même chose coté UIKit) (used for TextField)
+// TODO: Update doc to manage menu
 
 /// Spark Buttons are clickable elements used to trigger actions.
 ///
@@ -178,14 +179,15 @@ import SparkComponentSpinner
 ///
 /// ![Button rendering.](button_all.png)
 ///
-public struct SparkButton<Label, ImageLabel>: View where Label: View, ImageLabel: View {
+public struct SparkButton<Label, ImageLabel, Content>: View where Label: View, ImageLabel: View, Content: View {
 
     // MARK: - Properties
 
     private var image: () -> ImageLabel
     private var label: () -> Label
+    private var content: () -> Content
     private var role: ButtonRole?
-    private var action: () -> Void
+    private var action: (() -> Void)?
 
     @Environment(\.theme) private var theme
     @Environment(\.buttonAlignment) private var alignment
@@ -212,21 +214,33 @@ public struct SparkButton<Label, ImageLabel>: View where Label: View, ImageLabel
         action: @escaping @MainActor () -> Void,
         label: @escaping () -> Label,
         image: @escaping () -> ImageLabel
-    ) {
+    ) where Content == EmptyView {
         self.type = type
         self.role = role
         self.action = action
         self.label = label
         self.image = image
+        self.content = { EmptyView() }
+    }
+
+    init(
+        type: ButtonType,
+        label: @escaping () -> Label,
+        image: @escaping () -> ImageLabel,
+        content: @escaping () -> Content
+    ) {
+        self.type = type
+        self.role = nil
+        self.action = nil
+        self.label = label
+        self.image = image
+        self.content = content
     }
 
     // MARK: - View
 
     public var body: some View {
-        Button(role: self.role, action: {
-            self.action()
-            self.feedbackID = .init()
-        }) {
+        self.button {
             SparkHStack(spacing: self.viewModel.layout.horizontalSpacing) {
                 // Loading
                 if self.isLoading {
@@ -237,7 +251,7 @@ public struct SparkButton<Label, ImageLabel>: View where Label: View, ImageLabel
 
                 // Content
                 if self.viewModel.showContent {
-                     self.content()
+                     self.buttonContent()
                 }
             }
             .sparkPadding(.horizontal, self.viewModel.layout.horizontalPadding)
@@ -290,19 +304,41 @@ public struct SparkButton<Label, ImageLabel>: View where Label: View, ImageLabel
         .onChange(of: self.size) { size in
             self.viewModel.size = size
         }
-        .onChange(of: self.type) { type in
-            self.viewModel.type = type
-        }
         .onChange(of: self.contentVisibility) { contentVisibility in
             self.viewModel.contentVisibility = contentVisibility
+        }
+        .onChange(of: self.type) { type in
+            self.viewModel.type = type
         }
         .onChange(of: self.isEnabled) { isEnabled in
             self.viewModel.isEnabled = isEnabled
         }
+        .onChange(of: self.isLoading) { isLoading in
+            self.viewModel.isLoading = isLoading
+        }
     }
 
     @ViewBuilder
-    private func content() -> some View {
+    private func button<V>(@ViewBuilder label: @escaping () -> V) -> some View where V: View {
+        if self.content().isEmptyView {
+            Button(
+                role: self.role,
+                action: {
+                    self.action?()
+                    self.feedbackID = .init()
+                },
+                label: label
+            )
+        } else {
+            Menu(
+                content: self.content,
+                label: label
+            )
+        }
+    }
+
+    @ViewBuilder
+    private func buttonContent() -> some View {
         let image = self.image()
             .sparkFrame(
                 size: self.viewModel.sizes.imageSize,
@@ -314,7 +350,7 @@ public struct SparkButton<Label, ImageLabel>: View where Label: View, ImageLabel
             .foregroundStyle(self.viewModel.colors.tintColor)
             .font(self.viewModel.titleFontToken)
             .transition(
-                .move(edge: self.alignment.isTrailingImage ? .trailing : .leading)
+                .move(edge: self.alignment.isTrailingImage ? .leading : .trailing)
                 .combined(with: .opacity)
             )
             .fixedSize()
