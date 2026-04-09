@@ -48,7 +48,7 @@ public extension View {
     /// .buttonStyle(.myCustomButtonStyle)
     /// ```
     ///
-    nonisolated func sparkButtonStyle<S>(_ style: S) -> some View where S : SparkButtonStyle {
+    nonisolated func sparkButtonStyle<S>(_ style: S) -> some View where S: SparkButtonStyle {
         self.modifier(style)
     }
 }

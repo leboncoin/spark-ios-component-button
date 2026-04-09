@@ -191,7 +191,20 @@ public final class SparkUIButton: UIControl {
         }
     }
 
+    /// Remove the styles (*border*, *radius*, *height*, ...) on the Button if the value is **true**.
+    /// The **default** value is **false**.
+    public var removeStyles: Bool = false {
+        didSet {
+            self.viewModel.removeStyles = self.removeStyles
+        }
+    }
+
+    /// A Boolean value that determines whether the button action play a feedback.
+    /// The **default** value is **false**.
+    public var hasFeedback: Bool = false
+
     /// A Boolean value that determines whether the button is in a loading state.
+    /// The **default** value is **false**. 
     public var isLoading: Bool = false {
         didSet {
             self.viewModel.isLoading = self.isLoading
@@ -258,6 +271,7 @@ public final class SparkUIButton: UIControl {
     private var minWidthConstraint: NSLayoutConstraint?
 
     @ScaledUIFrame private var height: CGFloat = 0
+    @ScaledUIFrame private var width: CGFloat = 0
 
     @ScaledUIBorderRadius private var cornerRadius: CGFloat = 0
     @ScaledUIBorderWidth private var borderWidth: CGFloat = 0
@@ -375,6 +389,7 @@ public final class SparkUIButton: UIControl {
             size: self.size,
             type: self.type,
             contentVisibility: self.contentVisibility,
+            removeStyles: self.removeStyles,
             isEnabled: self.isEnabled,
             isLoading: self.isLoading
         )
@@ -440,8 +455,10 @@ public final class SparkUIButton: UIControl {
             self.touchUpInsideSubject.send()
 
             // Haptic
-            let generator = UIImpactFeedbackGenerator(style: .light)
-            generator.impactOccurred()
+            if self.hasFeedback {
+                let generator = UIImpactFeedbackGenerator(style: .light)
+                generator.impactOccurred()
+            }
 
         }), for: .touchUpInside)
     }
@@ -491,11 +508,11 @@ public final class SparkUIButton: UIControl {
 
         // Height
         self.heightConstraint?.constant = self.height
-        self.heightConstraint?.isActive = true
+        self.heightConstraint?.isActive = sizes.isFixedHeight
 
         // Width
         self.widthConstraint?.isActive = sizes.isFixedWidth
-        self.minWidthConstraint?.constant = self.height
+        self.minWidthConstraint?.constant = self.width
         self.minWidthConstraint?.isActive = true
 
         self.setNeedsUpdateConstraints()
@@ -617,6 +634,10 @@ public final class SparkUIButton: UIControl {
 
             self._height = .init(
                 wrappedValue: sizes.height,
+                traitCollection: self.traitCollection
+            )
+            self._width = .init(
+                wrappedValue: sizes.width,
                 traitCollection: self.traitCollection
             )
             self.updateSize(sizes)
@@ -767,6 +788,7 @@ public final class SparkUIButton: UIControl {
 
         // Sizes
         self._height.update(traitCollection: self.traitCollection)
+        self._width.update(traitCollection: self.traitCollection)
         self.updateSize()
 
         // Corner

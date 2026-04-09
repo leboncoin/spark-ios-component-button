@@ -38,9 +38,13 @@ final class SparkButtonSnapshotTests: SwiftUIComponentSnapshotTestCase {
                     .sparkButtonSize(configuration.size)
                     .sparkButtonAlignment(configuration.alignment)
                     .sparkButtonContentVisibility(configuration.contentVisibility)
+                    .sparkButtonRemoveStyles(configuration.removeStyles)
                     .sparkButtonIsInfiniteWidth(configuration.isInfiniteWidth)
                     .disabled(configuration.isDisabled)
-                    .frame(width: configuration.isInfiniteWidth ? 300 : nil)
+                    .frame(
+                        width: configuration.isInfiniteWidth ? 300 : nil,
+                        height: configuration.removeStyles ? 80 : nil
+                    )
                     .padding(.vertical, 30)
                     .padding(.horizontal, 50)
                     .fixedSize()

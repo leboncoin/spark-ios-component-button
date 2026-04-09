@@ -24,6 +24,7 @@ enum ButtonScenarioSnapshotTests: String, CaseIterable {
     case test7
     case test8
     case test9
+    case test10
     case documentation
 
     // MARK: - Type Alias
@@ -58,6 +59,8 @@ enum ButtonScenarioSnapshotTests: String, CaseIterable {
             return self.test8()
         case .test9:
             return self.test9()
+        case .test10:
+            return self.test10()
         case .documentation:
             return self.documentation()
         }
@@ -76,6 +79,7 @@ enum ButtonScenarioSnapshotTests: String, CaseIterable {
     ///  - alignment: default
     ///  - contentType: default
     ///  - content default
+    ///  - removeStyles: default
     ///  - mode: all
     private func test1() -> [ButtonConfigurationSnapshotTests] {
         let intents = ButtonIntent.allCases
@@ -100,6 +104,7 @@ enum ButtonScenarioSnapshotTests: String, CaseIterable {
     ///  - alignment: default
     ///  - contentType: default
     ///  - content default
+    ///  - removeStyles: default
     ///  - mode: default
     private func test2() -> [ButtonConfigurationSnapshotTests] {
         let variants = ButtonVariant.allCases
@@ -123,6 +128,7 @@ enum ButtonScenarioSnapshotTests: String, CaseIterable {
     ///  - alignment: default
     ///  - contentType: default
     ///  - content default
+    ///  - removeStyles: default
     ///  - mode: default
     private func test3() -> [ButtonConfigurationSnapshotTests] {
         let sizes = ButtonSize.allCases
@@ -145,6 +151,7 @@ enum ButtonScenarioSnapshotTests: String, CaseIterable {
     ///  - size: default
     ///  - alignment: all
     ///  - content all
+    ///  - removeStyles: default
     ///  - mode: default
     private func test4() -> [ButtonConfigurationSnapshotTests] {
         let alignments = ButtonAlignment.allCases
@@ -168,6 +175,7 @@ enum ButtonScenarioSnapshotTests: String, CaseIterable {
     ///  - alignment: default
     ///  - contentType: all
     ///  - content all
+    ///  - removeStyles: default
     ///  - mode: default
     private func test5() -> [ButtonConfigurationSnapshotTests] {
         let titleContentTypes = ButtonContentType.allCases
@@ -200,6 +208,7 @@ enum ButtonScenarioSnapshotTests: String, CaseIterable {
     ///  - contentType: default
     ///  - content all
     ///  - contentVisibility: all
+    ///  - removeStyles: default
     ///  - mode: default
     private func test6() -> [ButtonConfigurationSnapshotTests] {
         let contentVisibilities = ButtonContentVisibility.allCases
@@ -224,6 +233,7 @@ enum ButtonScenarioSnapshotTests: String, CaseIterable {
     ///  - contentType: default
     ///  - content default
     ///  - isInfiniteWidth: true and false
+    ///  - removeStyles: default
     ///  - mode: default
     private func test7() -> [ButtonConfigurationSnapshotTests] {
         let isInfiniteWidths = Bool.allCases
@@ -248,6 +258,7 @@ enum ButtonScenarioSnapshotTests: String, CaseIterable {
     ///  - contentType: default
     ///  - content default
     ///  - isDisabled: true
+    ///  - removeStyles: default
     ///  - mode: default
     private func test8() -> [ButtonConfigurationSnapshotTests] {
         return [
@@ -260,6 +271,29 @@ enum ButtonScenarioSnapshotTests: String, CaseIterable {
 
     /// Test 9
     ///
+    /// Description: To test no style
+    ///
+    /// Content:
+    ///  - intents: default
+    ///  - variant: default
+    ///  - size: default
+    ///  - alignment: default
+    ///  - contentType: default
+    ///  - content default
+    ///  - isDisabled: default
+    ///  - removeStyles: true
+    ///  - mode: default
+    private func test9() -> [ButtonConfigurationSnapshotTests] {
+        return [
+            .init(
+                scenario: self,
+                removeStyles: true
+            )
+        ]
+    }
+
+    /// Test 10
+    ///
     /// Description: To test a11y sizes
     ///
     /// Content:
@@ -269,9 +303,10 @@ enum ButtonScenarioSnapshotTests: String, CaseIterable {
     ///  - alignment: default
     ///  - contentType: default
     ///  - content default
+    ///  - removeStyles: default
     ///  - mode: default
     ///  - size: all
-    private func test9() -> [ButtonConfigurationSnapshotTests] {
+    private func test10() -> [ButtonConfigurationSnapshotTests] {
         return [
             .init(
                 scenario: self,

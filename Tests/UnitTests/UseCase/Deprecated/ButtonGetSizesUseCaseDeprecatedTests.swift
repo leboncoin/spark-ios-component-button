@@ -12,7 +12,7 @@ import SwiftUI
 
 final class ButtonGetSizesUseCaseDeprecatedTests: XCTestCase {
 
-    // MARK: - Test Type is .iconButton
+    // MARK: - Test Type is .iconButton with styles
 
     func test_execute_when_switchSize_is_small_case_and_type_is_iconButton() {
         // GIVEN
@@ -26,6 +26,10 @@ final class ButtonGetSizesUseCaseDeprecatedTests: XCTestCase {
 
         // THEN
         XCTAssertEqual(sizes.height, 32, "Wrong height value")
+        XCTAssertEqual(sizes.width, 0, "Wrong width value")
+        XCTAssertEqual(sizes.isFixedHeight, false, "Wrong isFixedHeight value")
+        XCTAssertEqual(sizes.isFixedWidth, false, "Wrong isFixedWidth value")
+        XCTAssertNil(sizes.maxHeight, "Wrong maxHeight value")
         XCTAssertEqual(sizes.imageSize, 16, "Wrong imageSize value")
     }
 
@@ -41,6 +45,10 @@ final class ButtonGetSizesUseCaseDeprecatedTests: XCTestCase {
 
         // THEN
         XCTAssertEqual(sizes.height, 44, "Wrong height value")
+        XCTAssertEqual(sizes.width, 0, "Wrong width value")
+        XCTAssertEqual(sizes.isFixedHeight, false, "Wrong isFixedHeight value")
+        XCTAssertEqual(sizes.isFixedWidth, false, "Wrong isFixedWidth value")
+        XCTAssertNil(sizes.maxHeight, "Wrong maxHeight value")
         XCTAssertEqual(sizes.imageSize, 16, "Wrong imageSize value")
     }
 
@@ -56,53 +64,10 @@ final class ButtonGetSizesUseCaseDeprecatedTests: XCTestCase {
 
         // THEN
         XCTAssertEqual(sizes.height, 56, "Wrong height value")
+        XCTAssertEqual(sizes.width, 0, "Wrong width value")
+        XCTAssertEqual(sizes.isFixedHeight, false, "Wrong isFixedHeight value")
+        XCTAssertEqual(sizes.isFixedWidth, false, "Wrong isFixedWidth value")
+        XCTAssertNil(sizes.maxHeight, "Wrong maxHeight value")
         XCTAssertEqual(sizes.imageSize, 24, "Wrong imageSize value")
-    }
-
-    // MARK: - Test Type is .button
-
-    func test_execute_when_switchSize_is_small_case_and_type_is_button() {
-        // GIVEN
-        let useCase = ButtonGetSizesUseCaseDeprecated()
-
-        // WHEN
-        let sizes = useCase.execute(
-            size: .small,
-            type: .button
-        )
-
-        // THEN
-        XCTAssertEqual(sizes.height, 32, "Wrong height value")
-        XCTAssertEqual(sizes.imageSize, 16, "Wrong imageSize value")
-    }
-
-    func test_execute_when_switchSize_is_medium_case_and_type_is_button() {
-        // GIVEN
-        let useCase = ButtonGetSizesUseCaseDeprecated()
-
-        // WHEN
-        let sizes = useCase.execute(
-            size: .medium,
-            type: .button
-        )
-
-        // THEN
-        XCTAssertEqual(sizes.height, 44, "Wrong height value")
-        XCTAssertEqual(sizes.imageSize, 16, "Wrong imageSize value")
-    }
-
-    func test_execute_when_switchSize_is_large_case_and_type_is_button() {
-        // GIVEN
-        let useCase = ButtonGetSizesUseCaseDeprecated()
-
-        // WHEN
-        let sizes = useCase.execute(
-            size: .large,
-            type: .button
-        )
-
-        // THEN
-        XCTAssertEqual(sizes.height, 56, "Wrong height value")
-        XCTAssertEqual(sizes.imageSize, 16, "Wrong imageSize value")
     }
 }

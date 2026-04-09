@@ -10,9 +10,6 @@ import SwiftUI
 @_spi(SI_SPI) import SparkCommon
 import SparkComponentSpinner
 
-// TODO: Add a environement pour supprimer la règle de la hauteur et les radius (même chose coté UIKit) (used for TextField)
-// TODO: Update doc to manage menu
-
 /// Spark Buttons are clickable elements used to trigger actions.
 ///
 /// Buttons communicate calls to action to the user and allow users
@@ -139,6 +136,20 @@ import SparkComponentSpinner
 /// }
 /// ```
 ///
+/// ## Menu
+///
+/// Button can also be a native **menu** :
+///
+/// ```swift
+/// SparkButton("Options") {
+///     Button("Edit") { }
+///     Button("Delete") { }
+///     Button("Share") { }
+/// }
+/// .sparkTheme(self.theme)
+/// .sparkButtonIntent(.main)
+/// ```
+///
 /// ## EnvironmentValues
 ///
 /// This component uses some EnvironmentValues:
@@ -148,8 +159,10 @@ import SparkComponentSpinner
 /// - **size**: ``sparkButtonSize(_:)`` (View extension)
 /// - **alignment**: ``sparkButtonAlignment(_:)`` (View extension)
 /// - **contentVisibility**: ``sparkButtonContentVisibility(_:)`` (View extension)
+/// - **hasFeedback**: ``sparkButtonHasFeedback(_:)`` (View extension)
 /// - **isLoading**: ``sparkButtonIsLoading(_:)`` (View extension)
 /// - **isInfiniteWidth**: ``sparkButtonIsInfiniteWidth(_:)`` (View extension)
+/// - **removeStyles**: ``sparkButtonRemoveStyles(_:)`` (View extension)
 ///
 /// > If these values are not set, default values will be applied.
 ///
@@ -192,9 +205,11 @@ public struct SparkButton<Label, ImageLabel, Content>: View where Label: View, I
     @Environment(\.theme) private var theme
     @Environment(\.buttonAlignment) private var alignment
     @Environment(\.buttonContentVisibility) private var contentVisibility
+    @Environment(\.buttonHasFeedback) private var hasFeedback
     @Environment(\.buttonIntent) private var intent
     @Environment(\.buttonIsLoading) private var isLoading
     @Environment(\.buttonIsInfiniteWidth) private var isInfiniteWidth
+    @Environment(\.buttonRemoveStyles) private var removeStyles
     @Environment(\.buttonSize) private var size
     @Environment(\.buttonVariant) private var variant
     @Environment(\.isSelected) private var isSelected
@@ -256,11 +271,12 @@ public struct SparkButton<Label, ImageLabel, Content>: View where Label: View, I
             }
             .sparkPadding(.horizontal, self.viewModel.layout.horizontalPadding)
             .sparkFrame(
-                width: self.viewModel.sizes.isFixedWidth ? self.viewModel.sizes.height : nil,
-                height: self.viewModel.sizes.height
+                width: self.viewModel.sizes.isFixedWidth ? self.viewModel.sizes.width : nil,
+                height: self.viewModel.sizes.isFixedHeight ? self.viewModel.sizes.height : nil
             )
-            .sparkFrame(minWidth: self.viewModel.sizes.height)
+            .sparkFrame(minWidth: self.viewModel.sizes.width)
             .frame(maxWidth: self.isInfiniteWidth ? .infinity : nil)
+            .frame(maxHeight: self.viewModel.sizes.maxHeight)
             .background(self.viewModel.colors.backgroundColor)
             .contentShape(Rectangle())
             .sparkBorder(
@@ -288,6 +304,7 @@ public struct SparkButton<Label, ImageLabel, Content>: View where Label: View, I
                 size: self.size,
                 type: self.type,
                 contentVisibility: self.contentVisibility,
+                removeStyles: self.removeStyles,
                 isEnabled: self.isEnabled,
                 isLoading: self.isLoading
             )
@@ -307,6 +324,9 @@ public struct SparkButton<Label, ImageLabel, Content>: View where Label: View, I
         .onChange(of: self.contentVisibility) { contentVisibility in
             self.viewModel.contentVisibility = contentVisibility
         }
+        .onChange(of: self.removeStyles) { removeStyles in
+            self.viewModel.removeStyles = removeStyles
+        }
         .onChange(of: self.type) { type in
             self.viewModel.type = type
         }
@@ -325,7 +345,11 @@ public struct SparkButton<Label, ImageLabel, Content>: View where Label: View, I
                 role: self.role,
                 action: {
                     self.action?()
-                    self.feedbackID = .init()
+
+                    // Play feedback only
+                    if self.hasFeedback {
+                        self.feedbackID = .init()
+                    }
                 },
                 label: label
             )

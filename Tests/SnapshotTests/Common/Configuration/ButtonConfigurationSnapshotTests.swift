@@ -24,6 +24,7 @@ struct ButtonConfigurationSnapshotTests {
     var titleType: ButtonContentType = .default
     var iconType: ButtonContentType = .default
     var contentVisibility: ButtonContentVisibility = .default
+    var removeStyles: Bool = false
     var isInfiniteWidth: Bool = false
     var isDisabled: Bool = false
 
@@ -45,6 +46,7 @@ struct ButtonConfigurationSnapshotTests {
             self.iconType.name(for: "Icon"),
             self.titleType.name(for: "Title"),
             "\(self.contentVisibility)" + "contentVisibility",
+            self.removeStyles ? "withoutStyles" : nil,
             self.isInfiniteWidth ? "infiniteWidth" : nil,
             self.isDisabled ? "disabled" : nil
         ].compactMap { $0 }

@@ -82,6 +82,15 @@ final class ButtonViewModel: ObservableObject {
         }
     }
 
+    var removeStyles: Bool? {
+        didSet {
+            guard oldValue != self.removeStyles, self.alreadyUpdateAll else { return }
+
+            self.setBorder()
+            self.setSizes()
+        }
+    }
+
     var isEnabled: Bool? {
         didSet {
             guard oldValue != self.isEnabled, self.alreadyUpdateAll else { return }
@@ -150,6 +159,7 @@ final class ButtonViewModel: ObservableObject {
         size: ButtonSize,
         type: ButtonType,
         contentVisibility: ButtonContentVisibility,
+        removeStyles: Bool,
         isEnabled: Bool,
         isLoading: Bool
     ) {
@@ -159,6 +169,7 @@ final class ButtonViewModel: ObservableObject {
         self.size = size
         self.type = type
         self.contentVisibility = contentVisibility
+        self.removeStyles = removeStyles
         self.isEnabled = isEnabled
         self.isLoading = isLoading
 
@@ -176,11 +187,12 @@ final class ButtonViewModel: ObservableObject {
     // MARK: - Private Setter
 
     private func setBorder() {
-        guard let theme, let variant else { return }
+        guard let theme, let variant, let removeStyles else { return }
 
         self.border = self.getBorderUseCase.execute(
             theme: theme,
-            variant: variant
+            variant: variant,
+            removeStyles: removeStyles
         )
     }
 
@@ -215,12 +227,13 @@ final class ButtonViewModel: ObservableObject {
     }
 
     private func setSizes() {
-        guard let size, let type, let contentVisibility, let isLoading else { return }
+        guard let size, let type, let contentVisibility, let removeStyles, let isLoading else { return }
 
         self.sizes = self.getSizesUseCase.execute(
             size: size,
             type: type,
             contentVisibility: contentVisibility,
+            removeStyles: removeStyles,
             isLoading: isLoading
         )
     }

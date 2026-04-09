@@ -14,7 +14,8 @@ protocol ButtonGetBorderUseCaseable {
     // sourcery: theme = "Identical"
     func execute(
         theme: any Theme,
-        variant: ButtonVariant
+        variant: ButtonVariant,
+        removeStyles: Bool
     ) -> ButtonBorder
 }
 
@@ -24,8 +25,13 @@ struct ButtonGetBorderUseCase: ButtonGetBorderUseCaseable {
 
     func execute(
         theme: any Theme,
-        variant: ButtonVariant
+        variant: ButtonVariant,
+        removeStyles: Bool
     ) -> ButtonBorder {
+        guard !removeStyles else {
+            return .init()
+        }
+
         let border = theme.border
 
         return .init(

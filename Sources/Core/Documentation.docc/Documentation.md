@@ -9,7 +9,7 @@ Buttons communicate calls to action to the user and allow users to interact with
 ### Implementation
 
 - On SwiftUI, you need to use the ``SparkButton`` View.
-- On UIKit, you need to use the ``SparkUIButton`` which inherit from an UIView.
+- On UIKit, you need to use the ``SparkUIButton`` which inherit from an UIControl.
 
 ### Rendering
 

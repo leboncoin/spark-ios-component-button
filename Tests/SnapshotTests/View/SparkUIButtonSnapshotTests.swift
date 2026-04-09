@@ -85,6 +85,7 @@ final class SparkUIButtonSnapshotTests: UIKitComponentSnapshotTestCase {
         button.size = configuration.size
         button.alignment = configuration.alignment
         button.contentVisibility = configuration.contentVisibility
+        button.removeStyles = configuration.removeStyles
         button.isEnabled = !configuration.isDisabled
 
         return button
@@ -111,6 +112,10 @@ final class SparkUIButtonSnapshotTests: UIKitComponentSnapshotTestCase {
 
         if configuration.isInfiniteWidth {
             container.widthAnchor.constraint(equalToConstant: 400).isActive = true
+        }
+
+        if configuration.removeStyles {
+            container.heightAnchor.constraint(equalToConstant: 80).isActive = true
         }
 
         return container

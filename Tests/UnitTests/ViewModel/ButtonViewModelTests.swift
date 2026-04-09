@@ -76,6 +76,7 @@ final class ButtonViewModelTests: XCTestCase {
             expectedNumberOfCalls: 1,
             givenTheme: stub.givenTheme,
             givenVariant: stub.givenVariant,
+            givenRemoveStyles: stub.givenRemoveStyles,
             expectedReturnValue: stub.expectedBorder
         )
 
@@ -111,6 +112,7 @@ final class ButtonViewModelTests: XCTestCase {
             givenSize: stub.givenSize,
             givenType: stub.givenType,
             givenContentVisibility: stub.givenContentVisibility,
+            givenRemoveStyles: stub.givenRemoveStyles,
             givenIsLoading: stub.givenIsLoading,
             expectedReturnValue: stub.expectedSizes
         )
@@ -162,6 +164,7 @@ final class ButtonViewModelTests: XCTestCase {
             expectedNumberOfCalls: 1,
             givenTheme: newTheme,
             givenVariant: stub.givenVariant,
+            givenRemoveStyles: stub.givenRemoveStyles,
             expectedReturnValue: stub.expectedBorder
         )
 
@@ -258,6 +261,7 @@ final class ButtonViewModelTests: XCTestCase {
             expectedNumberOfCalls: 1,
             givenTheme: stub.givenTheme,
             givenVariant: newVariant,
+            givenRemoveStyles: stub.givenRemoveStyles,
             expectedReturnValue: stub.expectedBorder
         )
 
@@ -303,6 +307,7 @@ final class ButtonViewModelTests: XCTestCase {
             givenSize: newSize,
             givenType: stub.givenType,
             givenContentVisibility: stub.givenContentVisibility,
+            givenRemoveStyles: stub.givenRemoveStyles,
             givenIsLoading: stub.givenIsLoading,
             expectedReturnValue: stub.expectedSizes
         )
@@ -349,6 +354,7 @@ final class ButtonViewModelTests: XCTestCase {
             givenSize: stub.givenSize,
             givenType: newType,
             givenContentVisibility: stub.givenContentVisibility,
+            givenRemoveStyles: stub.givenRemoveStyles,
             givenIsLoading: stub.givenIsLoading,
             expectedReturnValue: stub.expectedSizes
         )
@@ -474,6 +480,7 @@ final class ButtonViewModelTests: XCTestCase {
             givenSize: stub.givenSize,
             givenType: stub.givenType,
             givenContentVisibility: newContentVisibility,
+            givenRemoveStyles: stub.givenRemoveStyles,
             givenIsLoading: stub.givenIsLoading,
             expectedReturnValue: stub.expectedSizes
         )
@@ -527,6 +534,7 @@ final class ButtonViewModelTests: XCTestCase {
             givenSize: stub.givenSize,
             givenType: stub.givenType,
             givenContentVisibility: stub.givenContentVisibility,
+            givenRemoveStyles: stub.givenRemoveStyles,
             givenIsLoading: newIsLoading,
             expectedReturnValue: stub.expectedSizes
         )
@@ -538,6 +546,52 @@ final class ButtonViewModelTests: XCTestCase {
             getSpacingsUseCase: true,
             getDimUseCase: true,
             getTitleFontTokenUseCase: true
+        )
+    }
+
+    func test_removeStylesChanged_shouldUpdateBorderAndSizesOnly() {
+        // GIVEN
+        let stub = Stub()
+        let viewModel = stub.viewModel
+
+        viewModel.setup(stub: stub)
+        stub.resetMockedData()
+
+        let newRemoveStyles = !stub.givenRemoveStyles
+
+        // WHEN
+        viewModel.removeStyles = newRemoveStyles
+
+        // THEN
+        XCTAssertEqualToExpected(on: stub)
+
+        ButtonGetBorderUseCaseableMockTest.XCTAssert(
+            stub.getBorderUseCaseMock,
+            expectedNumberOfCalls: 1,
+            givenTheme: stub.givenTheme,
+            givenVariant: stub.givenVariant,
+            givenRemoveStyles: newRemoveStyles,
+            expectedReturnValue: stub.expectedBorder
+        )
+
+        ButtonGetSizesUseCaseableMockTest.XCTAssert(
+            stub.getSizesUseCaseMock,
+            expectedNumberOfCalls: 1,
+            givenSize: stub.givenSize,
+            givenType: stub.givenType,
+            givenContentVisibility: stub.givenContentVisibility,
+            givenRemoveStyles: newRemoveStyles,
+            givenIsLoading: stub.givenIsLoading,
+            expectedReturnValue: stub.expectedSizes
+        )
+
+        XCTAssertNotCalled(
+            on: stub,
+            getColorsUseCase: true,
+            getSpacingsUseCase: true,
+            getDimUseCase: true,
+            getTitleFontTokenUseCase: true,
+            getShowContentUseCase: true
         )
     }
 
@@ -553,8 +607,10 @@ final class ButtonViewModelTests: XCTestCase {
         viewModel.size = stub.givenSize.otherRandom
         viewModel.contentVisibility = stub.givenContentVisibility.otherRandom
         viewModel.type = stub.givenType.otherRandom
+        viewModel.removeStyles = true
         viewModel.isPressed = false
         viewModel.isEnabled = false
+        viewModel.isLoading = false
 
         // THEN
         XCTAssertEqualToExpected(
@@ -595,8 +651,10 @@ final class ButtonViewModelTests: XCTestCase {
         viewModel.size = stub.givenSize
         viewModel.contentVisibility = stub.givenContentVisibility
         viewModel.type = stub.givenType
+        viewModel.removeStyles = stub.givenRemoveStyles
         viewModel.isPressed = stub.givenIsPressed
         viewModel.isEnabled = stub.givenIsEnabled
+        viewModel.isLoading = stub.givenIsLoading
 
         // THEN
         XCTAssertEqualToExpected(on: stub)
@@ -628,7 +686,9 @@ final class ButtonViewModelTests: XCTestCase {
         viewModel.size = nil
         viewModel.contentVisibility = nil
         viewModel.type = nil
+        viewModel.removeStyles = nil
         viewModel.isEnabled = nil
+        viewModel.isLoading = nil
 
         // THEN
         XCTAssertEqualToExpected(on: stub)
@@ -658,6 +718,7 @@ private final class Stub {
     let givenSize: ButtonSize = .medium
     let givenContentVisibility: ButtonContentVisibility = .showAll
     let givenType: ButtonType = .button
+    let givenRemoveStyles: Bool = false
     let givenIsPressed: Bool = false
     let givenIsEnabled: Bool = true
     let givenIsLoading: Bool = false
@@ -703,7 +764,7 @@ private final class Stub {
 
     init() {
         let getBorderUseCaseMock = ButtonGetBorderUseCaseableGeneratedMock()
-        getBorderUseCaseMock.executeWithThemeAndVariantReturnValue = self.expectedBorder
+        getBorderUseCaseMock.executeWithThemeAndVariantAndRemoveStylesReturnValue = self.expectedBorder
 
         let getColorsUseCaseMock = ButtonGetColorsUseCaseableGeneratedMock()
         getColorsUseCaseMock.executeWithThemeAndIntentAndVariantAndIsPressedReturnValue = self.expectedColors
@@ -715,7 +776,7 @@ private final class Stub {
         getSpacingsUseCaseMock.executeWithThemeAndTypeAndContentVisibilityReturnValue = self.expectedLayout
 
         let getSizesUseCaseMock = ButtonGetSizesUseCaseableGeneratedMock()
-        getSizesUseCaseMock.executeWithSizeAndTypeAndContentVisibilityAndIsLoadingReturnValue = self.expectedSizes
+        getSizesUseCaseMock.executeWithSizeAndTypeAndContentVisibilityAndRemoveStylesAndIsLoadingReturnValue = self.expectedSizes
 
         let getDimUseCaseMock = ButttonGetDimUseCaseableGeneratedMock()
         getDimUseCaseMock.executeWithThemeAndIsEnabledReturnValue = self.expectedDim
@@ -767,6 +828,7 @@ private extension ButtonViewModel {
             size: stub.givenSize,
             type: stub.givenType,
             contentVisibility: stub.givenContentVisibility,
+            removeStyles: stub.givenRemoveStyles,
             isEnabled: stub.givenIsEnabled,
             isLoading: stub.givenIsLoading
         )
@@ -785,7 +847,7 @@ private func XCTAssertNotCalled(
 ) {
     ButtonGetBorderUseCaseableMockTest.XCTCalled(
         stub.getBorderUseCaseMock,
-        executeWithThemeAndVariantCalled: !getBorderUseCase
+        executeWithThemeAndVariantAndRemoveStylesCalled: !getBorderUseCase
     )
 
     ButtonGetColorsUseCaseableMockTest.XCTCalled(
@@ -805,7 +867,7 @@ private func XCTAssertNotCalled(
 
     ButtonGetSizesUseCaseableMockTest.XCTCalled(
         stub.getSizesUseCaseMock,
-        executeWithSizeAndTypeAndContentVisibilityAndIsLoadingCalled: !getSizesUseCase
+        executeWithSizeAndTypeAndContentVisibilityAndRemoveStylesAndIsLoadingCalled: !getSizesUseCase
     )
 
     ButttonGetDimUseCaseableMockTest.XCTCalled(

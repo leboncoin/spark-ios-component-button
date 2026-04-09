@@ -13,6 +13,9 @@ struct ButtonSizes: Equatable {
     // MARK: - Properties
 
     var height: CGFloat = .zero
+    var width: CGFloat = .zero
+    var isFixedHeight: Bool = false
     var isFixedWidth: Bool = false
+    var maxHeight: CGFloat?
     var imageSize: CGFloat = .zero
 }

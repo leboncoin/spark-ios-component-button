@@ -14,6 +14,7 @@ protocol ButtonGetSizesUseCaseable {
         size: ButtonSize,
         type: ButtonType,
         contentVisibility: ButtonContentVisibility,
+        removeStyles: Bool,
         isLoading: Bool
     ) -> ButtonSizes
 }
@@ -41,16 +42,17 @@ struct ButtonGetSizesUseCase: ButtonGetSizesUseCaseable {
         size: ButtonSize,
         type: ButtonType,
         contentVisibility: ButtonContentVisibility,
+        removeStyles: Bool,
         isLoading: Bool
     ) -> ButtonSizes {
-        let height: CGFloat
+        let contentSize: CGFloat
         switch size {
         case .small:
-            height = Constants.Height.small
+            contentSize = Constants.Height.small
         case .medium:
-            height = Constants.Height.medium
+            contentSize = Constants.Height.medium
         case .large:
-            height = Constants.Height.large
+            contentSize = Constants.Height.large
         }
 
         // The value is differente only when there is only an image and the size is large
@@ -59,9 +61,16 @@ struct ButtonGetSizesUseCase: ButtonGetSizesUseCaseable {
         // Component has a fix width (means component is an icon button)
         let isFixedWidth = type == .iconButton || (!contentVisibility.showLabel && !isLoading)
 
+        // No style means also no fixed height
+        let isFixedHeight = !removeStyles
+        let maxHeight: CGFloat? = removeStyles ? .infinity : nil
+
         return .init(
-            height: height,
+            height: contentSize,
+            width: contentSize,
+            isFixedHeight: isFixedHeight,
             isFixedWidth: isFixedWidth,
+            maxHeight: maxHeight,
             imageSize: imageSize
         )
     }
