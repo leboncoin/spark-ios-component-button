@@ -1,6 +1,6 @@
 //
-//  ButtonColors.swift
-//  Spark
+//  ButtonContextColorsDeprecated.swift
+//  SparkComponentButton
 //
 //  Created by janniklas.freundt.ext on 02.05.23.
 //  Copyright © 2023 Leboncoin. All rights reserved.
@@ -10,7 +10,7 @@
 @_spi(SI_SPI) import SparkThemingTesting
 import SparkTheming
 
-extension ButtonColors {
+extension ButtonContextColorsDeprecated {
 
     // MARK: - Properties
 
