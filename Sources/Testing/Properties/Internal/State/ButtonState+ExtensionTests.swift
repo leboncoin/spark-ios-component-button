@@ -1,5 +1,5 @@
 //
-//  ButtonState.swift
+//  ButtonStateDeprecated.swift
 //  SparkComponentButton
 //
 //  Created by robin.lemaire on 27/06/2023.
@@ -9,7 +9,7 @@
 import Foundation
 @testable import SparkComponentButton
 
-extension ButtonState {
+extension ButtonStateDeprecated {
 
     // MARK: - Properties
 
