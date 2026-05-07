@@ -1,220 +1,74 @@
 //
 //  ButtonGetVariantFilledUseCaseTests.swift
-//  SparkComponentButton
+//  SparkComponentButtonTests
 //
-//  Created by janniklas.freundt.ext on 16.05.23.
-//  Copyright © 2023 Leboncoin. All rights reserved.
+//  Created by robin.lemaire on 11/03/2026.
+//  Copyright © 2026 Leboncoin. All rights reserved.
 //
 
-import XCTest
-import SwiftUI
 @testable import SparkComponentButton
+@_spi(SI_SPI) import SparkTheming
 @_spi(SI_SPI) import SparkThemingTesting
-import SparkTheming
+import Testing
 
-final class ButtonGetVariantFilledUseCaseTests: ButtonVariantUseCaseTests {
+@Suite("Button Get Variant Filled Use Case Tests")
+struct ButtonGetVariantFilledUseCaseTests {
+
+    // MARK: - Properties
+
+    let sut: ButtonGetVariantFilledUseCase
+    let theme: ThemeGeneratedMock
+
+    // MARK: - Initialization
+
+    init() {
+        self.theme = .mocked()
+        self.sut = ButtonGetVariantFilledUseCase()
+    }
 
     // MARK: - Tests
-    func test_main_colors() throws {
-        // Given
-        let sut = self.sut()
 
-        // When
-        let colors = sut.execute(intent: .main, colors: self.theme.colors, dims: self.theme.dims)
+    @Test("Intent accent - not pressed")
+    func intentAccentNotPressed() throws {
+        // GIVEN / WHEN
+        let colors = self.sut.execute(theme: self.theme, intent: .accent, isPressed: false)
 
-        // Then
-        XCTAssertEqual(
-            [colors.foregroundColor,
-             colors.backgroundColor,
-             colors.pressedBackgroundColor,
-             colors.borderColor,
-             colors.pressedBorderColor].map(\.color),
-            [self.theme.colors.main.onMain,
-             self.theme.colors.main.main,
-             self.theme.colors.states.mainPressed,
-             ColorTokenDefault.clear,
-             ColorTokenDefault.clear
-            ].map(\.color))
+        // THEN
+        #expect(colors.tintColor.equals(self.theme.colors.accent.onAccent))
+        #expect(colors.backgroundColor.equals(self.theme.colors.accent.accent))
+        #expect(colors.borderColor.equals(ColorTokenDefault.clear))
     }
 
-    func test_support_colors() throws {
-        // Given
-        let sut = self.sut()
+    @Test("Intent accent - pressed")
+    func intentAccentPressed() throws {
+        // GIVEN / WHEN
+        let colors = self.sut.execute(theme: self.theme, intent: .accent, isPressed: true)
 
-        // When
-        let colors = sut.execute(intent: .support, colors: self.theme.colors, dims: self.theme.dims)
-
-        // Then
-        XCTAssertEqual(
-            [colors.foregroundColor,
-             colors.backgroundColor,
-             colors.pressedBackgroundColor,
-             colors.borderColor,
-             colors.pressedBorderColor].map(\.color),
-            [self.theme.colors.support.onSupport,
-             self.theme.colors.support.support,
-             self.theme.colors.states.supportPressed,
-             ColorTokenDefault.clear,
-             ColorTokenDefault.clear
-            ].map(\.color))
+        // THEN
+        #expect(colors.tintColor.equals(self.theme.colors.accent.onAccent))
+        #expect(colors.backgroundColor.equals(self.theme.colors.states.accentPressed))
+        #expect(colors.borderColor.equals(ColorTokenDefault.clear))
     }
 
-    func test_neutral_colors() throws {
-        // Given
-        let sut = self.sut()
+    @Test("Intent main - not pressed")
+    func intentMainNotPressed() throws {
+        // GIVEN / WHEN
+        let colors = self.sut.execute(theme: self.theme, intent: .main, isPressed: false)
 
-        // When
-        let colors = sut.execute(intent: .neutral, colors: self.theme.colors, dims: self.theme.dims)
-
-        // Then
-        XCTAssertEqual(
-            [colors.foregroundColor,
-             colors.backgroundColor,
-             colors.pressedBackgroundColor,
-             colors.borderColor,
-             colors.pressedBorderColor].map(\.color),
-            [self.theme.colors.feedback.onNeutral,
-             self.theme.colors.feedback.neutral,
-             self.theme.colors.states.neutralPressed,
-             ColorTokenDefault.clear,
-             ColorTokenDefault.clear
-            ].map(\.color))
+        // THEN
+        #expect(colors.tintColor.equals(self.theme.colors.main.onMain))
+        #expect(colors.backgroundColor.equals(self.theme.colors.main.main))
+        #expect(colors.borderColor.equals(ColorTokenDefault.clear))
     }
 
-    func test_alert_colors() throws {
-        // Given
-        let sut = self.sut()
+    @Test("Intent main - pressed")
+    func intentMainPressed() throws {
+        // GIVEN / WHEN
+        let colors = self.sut.execute(theme: self.theme, intent: .main, isPressed: true)
 
-        // When
-        let colors = sut.execute(intent: .alert, colors: self.theme.colors, dims: self.theme.dims)
-
-        // Then
-        XCTAssertEqual(
-            [colors.foregroundColor,
-             colors.backgroundColor,
-             colors.pressedBackgroundColor,
-             colors.borderColor,
-             colors.pressedBorderColor].map(\.color),
-            [self.theme.colors.feedback.onAlert,
-             self.theme.colors.feedback.alert,
-             self.theme.colors.states.alertPressed,
-             ColorTokenDefault.clear,
-             ColorTokenDefault.clear
-            ].map(\.color))
-    }
-
-    func test_success_colors() throws {
-        // Given
-        let sut = self.sut()
-
-        // When
-        let colors = sut.execute(intent: .success, colors: self.theme.colors, dims: self.theme.dims)
-
-        // Then
-        XCTAssertEqual(
-            [colors.foregroundColor,
-             colors.backgroundColor,
-             colors.pressedBackgroundColor,
-             colors.borderColor,
-             colors.pressedBorderColor].map(\.color),
-            [self.theme.colors.feedback.onSuccess,
-             self.theme.colors.feedback.success,
-             self.theme.colors.states.successPressed,
-             ColorTokenDefault.clear,
-             ColorTokenDefault.clear
-            ].map(\.color))
-    }
-
-    func test_danger_colors() throws {
-        // Given
-        let sut = self.sut()
-
-        // When
-        let colors = sut.execute(intent: .danger, colors: self.theme.colors, dims: self.theme.dims)
-
-        // Then
-        XCTAssertEqual(
-            [colors.foregroundColor,
-             colors.backgroundColor,
-             colors.pressedBackgroundColor,
-             colors.borderColor,
-             colors.pressedBorderColor].map(\.color),
-            [self.theme.colors.feedback.onError,
-             self.theme.colors.feedback.error,
-             self.theme.colors.states.errorPressed,
-             ColorTokenDefault.clear,
-             ColorTokenDefault.clear
-            ].map(\.color))
-    }
-
-    func test_surface_colors() throws {
-        // Given
-        let sut = self.sut()
-
-        // When
-        let colors = sut.execute(intent: .surface, colors: self.theme.colors, dims: self.theme.dims)
-
-        // Then
-        XCTAssertEqual(
-            [colors.foregroundColor,
-             colors.backgroundColor,
-             colors.pressedBackgroundColor,
-             colors.borderColor,
-             colors.pressedBorderColor].map(\.color),
-            [self.theme.colors.base.onSurface,
-             self.theme.colors.base.surface,
-             self.theme.colors.states.surfacePressed,
-             ColorTokenDefault.clear,
-             ColorTokenDefault.clear
-            ].map(\.color))
-    }
-
-    func test_surfaceInverse_colors() throws {
-        // Given
-        let sut = self.sut()
-
-        // When
-        let colors = sut.execute(intent: .surfaceInverse, colors: self.theme.colors, dims: self.theme.dims)
-
-        // Then
-        XCTAssertEqual(
-            [colors.foregroundColor,
-             colors.backgroundColor,
-             colors.pressedBackgroundColor,
-             colors.borderColor,
-             colors.pressedBorderColor].map(\.color),
-            [self.theme.colors.base.onSurfaceInverse,
-             self.theme.colors.base.surfaceInverse,
-             self.theme.colors.states.surfaceInversePressed,
-             ColorTokenDefault.clear,
-             ColorTokenDefault.clear
-            ].map(\.color))
-    }
-
-    func test_info_colors() throws {
-        // Given
-        let sut = self.sut()
-
-        // When
-        let colors = sut.execute(intent: .info, colors: self.theme.colors, dims: self.theme.dims)
-
-        // Then
-        XCTAssertEqual(
-            [colors.foregroundColor,
-             colors.backgroundColor,
-             colors.pressedBackgroundColor,
-             colors.borderColor,
-             colors.pressedBorderColor].map(\.color),
-            [self.theme.colors.feedback.onInfo,
-             self.theme.colors.feedback.info,
-             self.theme.colors.states.infoPressed,
-             ColorTokenDefault.clear,
-             ColorTokenDefault.clear
-            ].map(\.color))
-    }
-
-    // MARK: - Helper Functions
-    func sut() -> ButtonGetVariantFilledUseCase {
-        return ButtonGetVariantFilledUseCase()
+        // THEN
+        #expect(colors.tintColor.equals(self.theme.colors.main.onMain))
+        #expect(colors.backgroundColor.equals(self.theme.colors.states.mainPressed))
+        #expect(colors.borderColor.equals(ColorTokenDefault.clear))
     }
 }

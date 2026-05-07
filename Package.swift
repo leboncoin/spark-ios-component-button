@@ -26,6 +26,11 @@ let package = Package(
            /*version*/ "0.0.1"..."999.999.999"
        ),
        .package(
+           url: "https://github.com/leboncoin/spark-ios-component-spinner.git",
+           // path: "../spark-ios-component-spinner"
+           /*version*/ "0.0.1"..."999.999.999"
+       ),
+       .package(
            url: "https://github.com/leboncoin/spark-ios-theming.git",
            // path: "../spark-ios-theming"
            /*version*/ "0.0.1"..."999.999.999"
@@ -38,6 +43,10 @@ let package = Package(
                 .product(
                     name: "SparkCommon",
                     package: "spark-ios-common"
+                ),
+                .product(
+                    name: "SparkComponentSpinner",
+                    package: "spark-ios-component-spinner"
                 ),
                 .product(
                     name: "SparkTheming",
@@ -59,6 +68,10 @@ let package = Package(
                     package: "spark-ios-common"
                 ),
                 .product(
+                    name: "SparkComponentSpinner",
+                    package: "spark-ios-component-spinner"
+                ),
+                .product(
                     name: "SparkThemingTesting",
                     package: "spark-ios-theming"
                 ),
@@ -77,6 +90,10 @@ let package = Package(
                 .product(
                     name: "SparkCommonTesting",
                     package: "spark-ios-common"
+                ),
+                .product(
+                    name: "SparkComponentSpinner",
+                    package: "spark-ios-component-spinner"
                 ),
                 .product(
                     name: "SparkThemingTesting",

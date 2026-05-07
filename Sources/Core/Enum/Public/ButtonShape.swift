@@ -2,8 +2,8 @@
 //  ButtonShape.swift
 //  SparkComponentButton
 //
-//  Created by janniklas.freundt.ext on 08.05.23.
-//  Copyright © 2023 Leboncoin. All rights reserved.
+//  Created by robin.lemaire on 11/03/2026.
+//  Copyright © 2026 Leboncoin. All rights reserved.
 //
 
 import Foundation
@@ -23,4 +23,7 @@ public enum ButtonShape: CaseIterable {
     // MARK: - Properties
 
     public static var allCases: [ButtonShape] = [.pill, rounded]
+
+    /// The defautl value. Equals to **.rounded**
+    public static let `default`: ButtonShape = .rounded
 }
