@@ -102,14 +102,23 @@ public final class SparkUIButton: UIControl {
     private lazy var contentStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
             self.spaceView1,
-            self.spinner,
-            self.titleLabel,
-            self._imageView,
+            self.subContentStackView,
             self.spaceView2
         ])
         stackView.axis = .horizontal
-        stackView.alignment = .center
+        stackView.alignment = .fill
         stackView.isUserInteractionEnabled = false
+        return stackView
+    }()
+
+    private lazy var subContentStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [
+            self.spinner,
+            self.titleLabel,
+            self._imageView
+        ])
+        stackView.axis = .horizontal
+        stackView.alignment = .center
         return stackView
     }()
 
@@ -480,20 +489,18 @@ public final class SparkUIButton: UIControl {
 
     private func updateAlignment() {
         // Remove some arranged subviews first
-        self.contentStackView.removeArrangedSubviews([
+        self.subContentStackView.removeArrangedSubviews([
             self.titleLabel,
             self._imageView
         ])
 
-        // Insert new subviews before the latest current subviews
-        self.contentStackView.insertArrangedSubview(
-            self.alignment.isTrailingImage ? self.titleLabel : self._imageView,
-            at: self.contentStackView.arrangedSubviews.count - 1
+        // Insert new subviews after the spinner
+        self.subContentStackView.addArrangedSubview(
+            self.alignment.isTrailingImage ? self.titleLabel : self._imageView
         )
 
-        self.contentStackView.insertArrangedSubview(
-            self.alignment.isTrailingImage ? self._imageView : self.titleLabel,
-            at: self.contentStackView.arrangedSubviews.count - 1
+        self.subContentStackView.addArrangedSubview(
+            self.alignment.isTrailingImage ? self._imageView : self.titleLabel
         )
     }
 
@@ -535,16 +542,16 @@ public final class SparkUIButton: UIControl {
         let layout = layout ?? self.viewModel.layout
 
         // Update stack view spacing
-        self.contentStackView.spacing = layout.horizontalSpacing
+        self.subContentStackView.spacing = layout.horizontalSpacing
 
         // Update content insets
-        self.contentStackView.directionalLayoutMargins = .init(
+        self.subContentStackView.directionalLayoutMargins = .init(
             top: .zero,
             leading: layout.horizontalPadding,
             bottom: .zero,
             trailing: layout.horizontalPadding
         )
-        self.contentStackView.isLayoutMarginsRelativeArrangement = true
+        self.subContentStackView.isLayoutMarginsRelativeArrangement = true
     }
 
     private func updateTitleFontToken(_ fontToken: (any TypographyFontToken)? = nil) {
@@ -597,6 +604,8 @@ public final class SparkUIButton: UIControl {
             self.titleLabel.isHidden = true
             self._imageView.isHidden = true
         }
+
+        self.invalidateIntrinsicContentSize()
     }
 
     // MARK: - Subscribe
@@ -792,6 +801,25 @@ public final class SparkUIButton: UIControl {
     /// Returns the current image being displayed.
     public var currentImage: UIImage? {
         return self._imageView.image
+    }
+
+    // MARK: - Instrinsic Content Size
+
+    public override var intrinsicContentSize: CGSize {
+        var width: CGFloat = .zero
+
+        if self.widthConstraint?.isActive == true {
+            width = self.width
+
+        } else {
+            self.subContentStackView.layoutIfNeeded()
+            width = self.subContentStackView.frame.width
+        }
+
+        return CGSize(
+            width: width,
+            height: self.height
+        )
     }
 
     // MARK: - Trait Collection
