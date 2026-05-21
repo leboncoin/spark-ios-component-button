@@ -149,6 +149,7 @@ public final class SparkUIButton: UIControl {
     public private(set) var titleLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
+        label.adjustsFontForContentSizeCategory = true
         label.lineBreakMode = .byTruncatingMiddle
         label.isHidden = true
         return label
