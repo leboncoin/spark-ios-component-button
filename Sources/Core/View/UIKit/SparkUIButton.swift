@@ -298,6 +298,8 @@ public final class SparkUIButton: UIControl {
     @ScaledUIBorderRadius private var cornerRadius: CGFloat = 0
     @ScaledUIBorderWidth private var borderWidth: CGFloat = 0
 
+    private var contentStackViewLeadingConstraint: NSLayoutConstraint?
+
     private var titles: [UInt: String] = [:]
     private var attributedTitles: [UInt: NSAttributedString] = [:]
     private var images: [UInt: UIImage] = [:]
@@ -450,10 +452,17 @@ public final class SparkUIButton: UIControl {
     private func setupContentStackViewConstraints() {
         self.contentStackView.translatesAutoresizingMaskIntoConstraints = false
 
-        NSLayoutConstraint.stickEdges(
-            from: self.contentStackView,
-            to: self
-        )
+        self.contentStackViewLeadingConstraint = self.contentStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor)
+        let contentStackViewTopConstraint = self.contentStackView.topAnchor.constraint(equalTo: self.topAnchor)
+        let contentStackViewCenterYAnchor = self.contentStackView.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+        let contentStackViewCenterXAnchor = self.contentStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+
+        NSLayoutConstraint.activate([
+            self.contentStackViewLeadingConstraint,
+            contentStackViewTopConstraint,
+            contentStackViewCenterYAnchor,
+            contentStackViewCenterXAnchor,
+        ].compactMap { $0 })
     }
 
     // MARK: - Accessibility
@@ -546,13 +555,7 @@ public final class SparkUIButton: UIControl {
         self.subContentStackView.spacing = layout.horizontalSpacing
 
         // Update content insets
-        self.subContentStackView.directionalLayoutMargins = .init(
-            top: .zero,
-            leading: layout.horizontalPadding,
-            bottom: .zero,
-            trailing: layout.horizontalPadding
-        )
-        self.subContentStackView.isLayoutMarginsRelativeArrangement = true
+        self.contentStackViewLeadingConstraint?.constant = layout.horizontalPadding
     }
 
     private func updateTitleFontToken(_ fontToken: (any TypographyFontToken)? = nil) {
