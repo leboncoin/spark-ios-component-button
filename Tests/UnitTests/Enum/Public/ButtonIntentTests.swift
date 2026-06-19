@@ -21,6 +21,7 @@ struct ButtonIntentTests {
             .accent,
             .alert,
             .danger,
+            .ia,
             .info,
             .main,
             .neutral,
