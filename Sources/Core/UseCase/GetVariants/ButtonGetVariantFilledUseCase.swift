@@ -40,6 +40,12 @@ struct ButtonGetVariantFilledUseCase: ButtonGetVariantUseCaseable {
                 backgroundColor: isPressed ? colors.states.errorPressed : colors.feedback.error,
                 borderColor: borderColor
             )
+        case .ia:
+            return .init(
+                tintColor: colors.ia.onIA,
+                backgroundColor: isPressed ? colors.states.iaPressed : colors.ia.ia,
+                borderColor: borderColor
+            )
         case .info:
             return .init(
                 tintColor: colors.feedback.onInfo,

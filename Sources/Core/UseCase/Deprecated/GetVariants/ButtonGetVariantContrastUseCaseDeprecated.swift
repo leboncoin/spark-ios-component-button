@@ -47,6 +47,14 @@ struct ButtonGetVariantContrastUseCaseDeprecated: ButtonGetVariantUseCaseableDep
                 borderColor: borderColor,
                 pressedBorderColor: pressedBorderColor
             )
+        case .ia:
+            return .init(
+                foregroundColor: colors.ia.onIAContainer,
+                backgroundColor: backgroundColor,
+                pressedBackgroundColor: colors.states.iaContainerPressed,
+                borderColor: borderColor,
+                pressedBorderColor: pressedBorderColor
+            )
         case .info:
             return .init(
                 foregroundColor: colors.feedback.onInfoContainer,

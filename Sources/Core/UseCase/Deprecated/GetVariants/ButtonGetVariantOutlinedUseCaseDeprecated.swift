@@ -47,6 +47,14 @@ struct ButtonGetVariantOutlinedUseCaseDeprecated: ButtonGetVariantUseCaseableDep
                 borderColor: colors.feedback.error,
                 pressedBorderColor: colors.feedback.error
             )
+        case .ia:
+            return .init(
+                foregroundColor: colors.ia.ia,
+                backgroundColor: backgroundColor,
+                pressedBackgroundColor: colors.ia.ia.opacity(dim5),
+                borderColor: colors.ia.ia,
+                pressedBorderColor: colors.ia.ia
+            )
         case .info:
             return .init(
                 foregroundColor: colors.feedback.info,

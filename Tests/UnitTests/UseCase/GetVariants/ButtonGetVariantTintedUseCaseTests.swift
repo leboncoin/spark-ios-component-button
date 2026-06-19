@@ -61,6 +61,17 @@ struct ButtonGetVariantTintedUseCaseTests {
         #expect(colors.borderColor.equals(ColorTokenDefault.clear))
     }
 
+    @Test("Intent ia")
+    func intentIA() throws {
+        // GIVEN / WHEN
+        let colors = self.sut.execute(theme: self.theme, intent: .ia, isPressed: false)
+
+        // THEN
+        #expect(colors.tintColor.equals(self.theme.colors.ia.onIAContainer))
+        #expect(colors.backgroundColor.equals(self.theme.colors.ia.iaContainer))
+        #expect(colors.borderColor.equals(ColorTokenDefault.clear))
+    }
+
     @Test("Intent info")
     func intentInfo() throws {
         // GIVEN / WHEN

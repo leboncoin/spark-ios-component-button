@@ -50,6 +50,28 @@ struct ButtonGetVariantFilledUseCaseTests {
         #expect(colors.borderColor.equals(ColorTokenDefault.clear))
     }
 
+    @Test("Intent ia - not pressed")
+    func intentIANotPressed() throws {
+        // GIVEN / WHEN
+        let colors = self.sut.execute(theme: self.theme, intent: .ia, isPressed: false)
+
+        // THEN
+        #expect(colors.tintColor.equals(self.theme.colors.ia.onIA))
+        #expect(colors.backgroundColor.equals(self.theme.colors.ia.ia))
+        #expect(colors.borderColor.equals(ColorTokenDefault.clear))
+    }
+
+    @Test("Intent ia - pressed")
+    func intentIAPressed() throws {
+        // GIVEN / WHEN
+        let colors = self.sut.execute(theme: self.theme, intent: .ia, isPressed: true)
+
+        // THEN
+        #expect(colors.tintColor.equals(self.theme.colors.ia.onIA))
+        #expect(colors.backgroundColor.equals(self.theme.colors.states.iaPressed))
+        #expect(colors.borderColor.equals(ColorTokenDefault.clear))
+    }
+
     @Test("Intent main - not pressed")
     func intentMainNotPressed() throws {
         // GIVEN / WHEN

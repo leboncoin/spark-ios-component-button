@@ -14,6 +14,7 @@ public enum ButtonIntent: CaseIterable {
     case accent
     case alert
     case danger
+    case ia
     case info
     case main
     case neutral

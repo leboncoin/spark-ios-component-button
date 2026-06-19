@@ -39,6 +39,12 @@ struct ButtonGetVariantOutlinedUseCase: ButtonGetVariantUseCaseable {
                 backgroundColor: isPressed ? colors.feedback.error.opacity(dim5) : ColorTokenDefault.clear,
                 borderColor: colors.feedback.error
             )
+        case .ia:
+            return .init(
+                tintColor: colors.ia.ia,
+                backgroundColor: isPressed ? colors.ia.ia.opacity(dim5) : ColorTokenDefault.clear,
+                borderColor: colors.ia.ia
+            )
         case .info:
             return .init(
                 tintColor: colors.feedback.info,
