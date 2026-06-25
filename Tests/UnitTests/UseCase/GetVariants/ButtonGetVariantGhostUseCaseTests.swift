@@ -39,6 +39,17 @@ struct ButtonGetVariantGhostUseCaseTests {
         #expect(colors.borderColor.equals(ColorTokenDefault.clear))
     }
 
+    @Test("Intent ai")
+    func intentAI() throws {
+        // GIVEN / WHEN
+        let colors = self.sut.execute(theme: self.theme, intent: .ai, isPressed: false)
+
+        // THEN
+        #expect(colors.tintColor.equals(self.theme.colors.ai.onAIContainer))
+        #expect(colors.backgroundColor.equals(ColorTokenDefault.clear))
+        #expect(colors.borderColor.equals(ColorTokenDefault.clear))
+    }
+
     @Test("Intent alert")
     func intentAlert() throws {
         // GIVEN / WHEN
@@ -57,17 +68,6 @@ struct ButtonGetVariantGhostUseCaseTests {
 
         // THEN
         #expect(colors.tintColor.equals(self.theme.colors.feedback.onErrorContainer))
-        #expect(colors.backgroundColor.equals(ColorTokenDefault.clear))
-        #expect(colors.borderColor.equals(ColorTokenDefault.clear))
-    }
-
-    @Test("Intent ia")
-    func intentIA() throws {
-        // GIVEN / WHEN
-        let colors = self.sut.execute(theme: self.theme, intent: .ia, isPressed: false)
-
-        // THEN
-        #expect(colors.tintColor.equals(self.theme.colors.ia.onIAContainer))
         #expect(colors.backgroundColor.equals(ColorTokenDefault.clear))
         #expect(colors.borderColor.equals(ColorTokenDefault.clear))
     }

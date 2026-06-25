@@ -28,6 +28,12 @@ struct ButtonGetVariantFilledUseCase: ButtonGetVariantUseCaseable {
                 backgroundColor: isPressed ? colors.states.accentPressed : colors.accent.accent,
                 borderColor: borderColor
             )
+        case .ai:
+            return .init(
+                tintColor: colors.ai.onAI,
+                backgroundColor: isPressed ? colors.states.aiPressed : colors.ai.ai,
+                borderColor: borderColor
+            )
         case .alert:
             return .init(
                 tintColor: colors.feedback.onAlert,
@@ -38,12 +44,6 @@ struct ButtonGetVariantFilledUseCase: ButtonGetVariantUseCaseable {
             return .init(
                 tintColor: colors.feedback.onError,
                 backgroundColor: isPressed ? colors.states.errorPressed : colors.feedback.error,
-                borderColor: borderColor
-            )
-        case .ia:
-            return .init(
-                tintColor: colors.ia.onIA,
-                backgroundColor: isPressed ? colors.states.iaPressed : colors.ia.ia,
                 borderColor: borderColor
             )
         case .info:

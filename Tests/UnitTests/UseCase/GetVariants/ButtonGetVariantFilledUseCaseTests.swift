@@ -50,25 +50,25 @@ struct ButtonGetVariantFilledUseCaseTests {
         #expect(colors.borderColor.equals(ColorTokenDefault.clear))
     }
 
-    @Test("Intent ia - not pressed")
-    func intentIANotPressed() throws {
+    @Test("Intent ai - not pressed")
+    func intentAINotPressed() throws {
         // GIVEN / WHEN
-        let colors = self.sut.execute(theme: self.theme, intent: .ia, isPressed: false)
+        let colors = self.sut.execute(theme: self.theme, intent: .ai, isPressed: false)
 
         // THEN
-        #expect(colors.tintColor.equals(self.theme.colors.ia.onIA))
-        #expect(colors.backgroundColor.equals(self.theme.colors.ia.ia))
+        #expect(colors.tintColor.equals(self.theme.colors.ai.onAI))
+        #expect(colors.backgroundColor.equals(self.theme.colors.ai.ai))
         #expect(colors.borderColor.equals(ColorTokenDefault.clear))
     }
 
-    @Test("Intent ia - pressed")
-    func intentIAPressed() throws {
+    @Test("Intent ai - pressed")
+    func intentAIPressed() throws {
         // GIVEN / WHEN
-        let colors = self.sut.execute(theme: self.theme, intent: .ia, isPressed: true)
+        let colors = self.sut.execute(theme: self.theme, intent: .ai, isPressed: true)
 
         // THEN
-        #expect(colors.tintColor.equals(self.theme.colors.ia.onIA))
-        #expect(colors.backgroundColor.equals(self.theme.colors.states.iaPressed))
+        #expect(colors.tintColor.equals(self.theme.colors.ai.onAI))
+        #expect(colors.backgroundColor.equals(self.theme.colors.states.aiPressed))
         #expect(colors.borderColor.equals(ColorTokenDefault.clear))
     }
 
