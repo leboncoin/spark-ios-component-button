@@ -39,6 +39,17 @@ struct ButtonGetVariantOutlinedUseCaseTests {
         #expect(colors.borderColor.equals(self.theme.colors.accent.accent))
     }
 
+    @Test("Intent ai")
+    func intentAI() throws {
+        // GIVEN / WHEN
+        let colors = self.sut.execute(theme: self.theme, intent: .ai, isPressed: false)
+
+        // THEN
+        #expect(colors.tintColor.equals(self.theme.colors.ai.ai))
+        #expect(colors.backgroundColor.equals(ColorTokenDefault.clear))
+        #expect(colors.borderColor.equals(self.theme.colors.ai.ai))
+    }
+
     @Test("Intent alert")
     func intentAlert() throws {
         // GIVEN / WHEN
@@ -59,17 +70,6 @@ struct ButtonGetVariantOutlinedUseCaseTests {
         #expect(colors.tintColor.equals(self.theme.colors.feedback.error))
         #expect(colors.backgroundColor.equals(ColorTokenDefault.clear))
         #expect(colors.borderColor.equals(self.theme.colors.feedback.error))
-    }
-
-    @Test("Intent ia")
-    func intentIA() throws {
-        // GIVEN / WHEN
-        let colors = self.sut.execute(theme: self.theme, intent: .ia, isPressed: false)
-
-        // THEN
-        #expect(colors.tintColor.equals(self.theme.colors.ia.ia))
-        #expect(colors.backgroundColor.equals(ColorTokenDefault.clear))
-        #expect(colors.borderColor.equals(self.theme.colors.ia.ia))
     }
 
     @Test("Intent info")

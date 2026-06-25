@@ -12,9 +12,9 @@ import Foundation
 @frozen
 public enum ButtonIntent: CaseIterable {
     case accent
+    case ai
     case alert
     case danger
-    case ia
     case info
     case main
     case neutral

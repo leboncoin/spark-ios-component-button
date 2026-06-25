@@ -31,6 +31,14 @@ struct ButtonGetVariantOutlinedUseCaseDeprecated: ButtonGetVariantUseCaseableDep
                 borderColor: colors.accent.accent,
                 pressedBorderColor: colors.accent.accent
             )
+        case .ai:
+            return .init(
+                foregroundColor: colors.ai.ai,
+                backgroundColor: backgroundColor,
+                pressedBackgroundColor: colors.ai.ai.opacity(dim5),
+                borderColor: colors.ai.ai,
+                pressedBorderColor: colors.ai.ai
+            )
         case .alert:
             return .init(
                 foregroundColor: colors.feedback.alert,
@@ -46,14 +54,6 @@ struct ButtonGetVariantOutlinedUseCaseDeprecated: ButtonGetVariantUseCaseableDep
                 pressedBackgroundColor: colors.feedback.error.opacity(dim5),
                 borderColor: colors.feedback.error,
                 pressedBorderColor: colors.feedback.error
-            )
-        case .ia:
-            return .init(
-                foregroundColor: colors.ia.ia,
-                backgroundColor: backgroundColor,
-                pressedBackgroundColor: colors.ia.ia.opacity(dim5),
-                borderColor: colors.ia.ia,
-                pressedBorderColor: colors.ia.ia
             )
         case .info:
             return .init(

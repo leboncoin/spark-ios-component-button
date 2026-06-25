@@ -27,6 +27,12 @@ struct ButtonGetVariantOutlinedUseCase: ButtonGetVariantUseCaseable {
                 backgroundColor: isPressed ? colors.accent.accent.opacity(dim5) : ColorTokenDefault.clear,
                 borderColor: colors.accent.accent
             )
+        case .ai:
+            return .init(
+                tintColor: colors.ai.ai,
+                backgroundColor: isPressed ? colors.ai.ai.opacity(dim5) : ColorTokenDefault.clear,
+                borderColor: colors.ai.ai
+            )
         case .alert:
             return .init(
                 tintColor: colors.feedback.alert,
@@ -38,12 +44,6 @@ struct ButtonGetVariantOutlinedUseCase: ButtonGetVariantUseCaseable {
                 tintColor: colors.feedback.error,
                 backgroundColor: isPressed ? colors.feedback.error.opacity(dim5) : ColorTokenDefault.clear,
                 borderColor: colors.feedback.error
-            )
-        case .ia:
-            return .init(
-                tintColor: colors.ia.ia,
-                backgroundColor: isPressed ? colors.ia.ia.opacity(dim5) : ColorTokenDefault.clear,
-                borderColor: colors.ia.ia
             )
         case .info:
             return .init(
